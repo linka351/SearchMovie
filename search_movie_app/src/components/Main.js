@@ -1,13 +1,14 @@
-import '../styles/Main.scss'
-import Navbar from './Navbar'
+import "../styles/Main.scss";
+import { Link } from "react-router-dom";
 
 function Main() {
-    return (
-        <div>
-            <Navbar/>
-            <p>SearchMovie</p>
-        </div>
-    )
+	return (
+		<div>
+			<Link to={"/movies"}>
+				<p>SearchMovie</p>
+			</Link>
+		</div>
+	);
 }
 
-export default Main
+export default Main;
