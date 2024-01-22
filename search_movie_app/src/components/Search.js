@@ -1,8 +1,9 @@
-
 function Search() {
-    <>
-        <p>Search</p>
-    </>
+	return (
+		<>
+			<p style={{position: "relative", zIndex: 0}}>search</p>
+		</>
+	);
 }
 
-export default Search
+export default Search;

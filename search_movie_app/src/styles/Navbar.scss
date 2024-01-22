@@ -1,0 +1,43 @@
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 3rem;
+	background-color: black;
+
+	.navbar-link {
+		color: white;
+		text-decoration: none;
+	}
+
+	.main {
+		color: red;
+	}
+
+	.left-side-navbar {
+		display: flex;
+		width: 20%;
+		margin-left: 1rem;
+
+		.navbar-link {
+			margin-left: 1rem;
+		}
+
+        button {
+            font-size: 1rem;
+            color: white;
+			background-color: black;
+        }
+	}
+
+	.right-side-navbar {
+		width: 20%;
+		display: flex;
+		justify-content: flex-end;
+		margin-right: 1rem;
+
+		.navbar-link {
+			margin-right: 1rem;
+		}
+	}
+}

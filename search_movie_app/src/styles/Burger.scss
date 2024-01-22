@@ -1,0 +1,27 @@
+
+.fabar {
+	color: white;
+	font-size: 1.5rem;
+}
+.faxmark {
+	color: white;
+	font-size: 1.5rem;
+}
+
+.sidenav {
+	width: 15rem;
+	background-color: grey;
+	position: absolute;
+	height: 95vh;
+	padding: 0 30px;
+	left: -100%;
+	transition-duration: all 1s;
+}
+
+.sidenav.active {
+	left: 0;
+}
+
+
+
+
