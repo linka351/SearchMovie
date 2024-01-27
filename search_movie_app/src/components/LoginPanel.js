@@ -1,18 +1,20 @@
 import { useState } from "react";
 import "../styles/LoginPanel.scss";
 
+const addInitial = () => {
+	const saved = localStorage.getItem("name");
+	const initialValue = JSON.parse(saved);
+	return initialValue || "";
+};
+
 function LoginPanel() {
-	const [name, setName] = useState(() => {
-		const saved = localStorage.getItem("name");
-		const initialValue = JSON.parse(saved);
-		return initialValue || "";
-	});
-	const addToLocalStorage = e => {
+	const [name, setName] = useState(addInitial)
+	const addToLocalStorage = () => {
 		localStorage.setItem("name", JSON.stringify(name));
 	};
 
 	return (
-		<div className="panel-container">
+		<div className='panel-container'>
 			<div className='login-panel'>
 				<form>
 					<label>
