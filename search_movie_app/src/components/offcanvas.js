@@ -1,10 +1,9 @@
-//Animacje nie działa transition
 
 import "../styles/Burger.scss"
 
 function Burger({showMenu}) {
     return (
-        <div className={showMenu ? "sidenav active" : "sidenav"}>
+        <div className= {`sidenav ${showMenu ? "active" : ""}`}>
             <p>Strona główna</p>
             <p>Filmy</p>
             <p>Seriale</p>
