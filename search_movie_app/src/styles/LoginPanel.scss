@@ -1,17 +1,20 @@
 .panel-container {
 	height: 93vh;
-	width: 99vw;
+	width: 100%;
+	//szeroość wysokość co jest nie tak
     display: flex;
     align-items: center;
     justify-content: center;
 	
 
 	.login-panel {
+		background-color: #FF4136;
+		width: 300px;
+		height: 300px;
 		position: absolute;
-		height: 10rem;
-		width: 20rem;
-		background-color: rgb(190, 175, 175);
-		border-radius: 3px;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
 
 		form {
 			text-align: center;

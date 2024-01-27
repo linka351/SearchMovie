@@ -22,9 +22,9 @@ function Navbar() {
 				<div className={"left-side-navbar"}>
 					{!toggle ? (
 						<FaBars className='fabar' onClick={toggleMenu} />
-					) : (
-						<FaXmark className='faxmark' onClick={toggleMenu} />
-						)}
+						) : (
+							<FaXmark className='faxmark' onClick={toggleMenu} />
+							)}
 
 					<Link className='navbar-link' to={"/movies"}>
 						Movies
@@ -46,8 +46,9 @@ function Navbar() {
 				</div>
 			</div>
 			{toggle && <Burger showMenu={toggle} />}
+							{localStorage.length === 0 && <LoginPanel />}
 			<Outlet />
-			{localStorage.length === 0 && <LoginPanel />}
+			
 		</>
 	);
 }
