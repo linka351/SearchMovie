@@ -1,12 +1,11 @@
 import "../styles/Main.scss";
-import { Link } from "react-router-dom";
+import { Slider } from "./Slider"
+
 
 function Main() {
 	return (
 		<div>
-			<Link to={"/movies"}>
-				<p>SearchMovie</p>
-			</Link>
+			<Slider />
 		</div>
 	);
 }
