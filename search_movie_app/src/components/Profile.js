@@ -1,7 +1,9 @@
 function Profile() {
-    <>
-        <p>Profile</p>
-    </>
+	return (
+		<>
+			<p>Profile</p>
+		</>
+	);
 }
 
-export default Profile
+export default Profile;

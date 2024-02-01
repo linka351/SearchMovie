@@ -1,0 +1,17 @@
+.slider {
+    height: 70vh;
+    width: 100vw;
+    
+    .slider-pagination {
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    img {
+        height: 100%;
+        width: 100%;
+    }
+
+}
