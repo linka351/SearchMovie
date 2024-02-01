@@ -1,8 +1,9 @@
-
 function Search() {
-    <>
-        <p>Search</p>
-    </>
+	return (
+		<>
+			<p>search</p>
+		</>
+	);
 }
 
-export default Search
+export default Search;
