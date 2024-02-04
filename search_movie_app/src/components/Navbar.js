@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { FaBars, FaMagnifyingGlass, FaXmark } from "react-icons/fa6";
 import { useState } from "react";
-import Burger from "./offcanvas";
+import Offcanvas from "./Offcanvas";
 import "../styles/Navbar.scss";
-import "../styles/Burger.scss";
+import "../styles/Offcanvas.scss";
 
 function Navbar() {
 	const [isOpen, setIsOpen] = useState(false);
@@ -36,7 +36,7 @@ function Navbar() {
 					</Link>
 				</div>
 			</div>
-			{<Burger showMenu={isOpen}/>}
+			{<Offcanvas showMenu={isOpen}/>}
 			
 		</>
 	);

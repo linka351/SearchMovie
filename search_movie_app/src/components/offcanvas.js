@@ -1,7 +1,7 @@
 
-import "../styles/Burger.scss"
+import "../styles/Offcanvas.scss"
 
-function Burger({showMenu}) {
+function Offcanvas({showMenu}) {
     return (
         <div className= {`sidenav ${showMenu ? "active" : ""}`}>
             <p>Strona główna</p>
@@ -11,4 +11,4 @@ function Burger({showMenu}) {
     )
 }
 
-export default Burger
+export default Offcanvas
