@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import "../styles/Movies.scss";
-import { useParams } from "react-router-dom";
 //dodanie rzeczy do nawigacji
 
 const apiKey = "c9de2f7b31706574fa92cef28829a225";
@@ -10,14 +9,6 @@ function Movies() {
 	const [data, setData] = useState([]);
 	const [getPage, setGetPage] = useState(1);
 	const [pages, setPages] = useState(null);
-
-	const takeToNextPage = () => {
-		setGetPage(prev => prev + 1);
-	};
-
-	const takeToPreviousPage = () => {
-		setGetPage(prev => prev - 1);
-	};
 
 	useEffect(() => {
 		fetch(
@@ -29,6 +20,16 @@ function Movies() {
 				setData(data.results);
 			});
 	}, [getPage]);
+
+	const takeToNextPage = () => {
+		if (getPage === pages) return;
+		setGetPage(prev => prev + 1);
+	};
+
+	const takeToPreviousPage = () => {
+		if (getPage === 1) return;
+		setGetPage(prev => prev - 1);
+	};
 
 	return (
 		<>
