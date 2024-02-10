@@ -1,16 +1,14 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FaBars, FaMagnifyingGlass, FaXmark } from "react-icons/fa6";
 import { useState } from "react";
-import Burger from "./Burger";
+import Offcanvas from "./Offcanvas";
 import "../styles/Navbar.scss";
-import "../styles/Burger.scss";
-import LoginPanel from "./LoginPanel";
+import "../styles/Offcanvas.scss";
 
 function Navbar() {
-	
-	const [toggle, setToggle] = useState(false);
+	const [isOpen, setIsOpen] = useState(false);
 	const toggleMenu = () => {
-		setToggle(!toggle);
+		setIsOpen(!isOpen);
 	};
 
 	console.log(localStorage.name);
@@ -20,11 +18,7 @@ function Navbar() {
 		<>	
 			<div className='navbar'>
 				<div className={"left-side-navbar"}>
-					{!toggle ? (
-						<FaBars className='fabar' onClick={toggleMenu} />
-						) : (
-							<FaXmark className='faxmark' onClick={toggleMenu} />
-							)}
+					{!isOpen ? <FaBars className="fabar" onClick={toggleMenu} /> : <FaXmark className="faxmark" onClick={toggleMenu} />}
 
 					<Link className='navbar-link' to={"/movies"}>
 						Movies
@@ -34,7 +28,7 @@ function Navbar() {
 					</Link>
 				</div>
 				<Link className='navbar-link main' to={"/"}>
-					<h1>MovieSearch</h1>
+					<p>MovieSearch</p>
 				</Link>
 				<div className='right-side-navbar'>
 					<Link className='navbar-link' to={"/search"}>
@@ -45,9 +39,7 @@ function Navbar() {
 					</Link>
 				</div>
 			</div>
-			{toggle && <Burger showMenu={toggle} />}
-							{localStorage.length === 0 && <LoginPanel />}
-			<Outlet />
+			{<Offcanvas showMenu={isOpen}/>}
 			
 		</>
 	);

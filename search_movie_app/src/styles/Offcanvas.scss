@@ -12,10 +12,10 @@
 	width: 15rem;
 	background-color: grey;
 	position: absolute;
-	height: 95vh;
+	height: 93vh;
 	padding: 0 30px;
 	left: -100%;
-	transition-duration: all 1s;
+	transition: 1s;
 }
 
 .sidenav.active {
