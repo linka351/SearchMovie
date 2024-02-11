@@ -3,7 +3,7 @@ function Movies() {
 	
 	return (
 		<>
-			<p>hi</p>
+			
 		</>
 	);
 }

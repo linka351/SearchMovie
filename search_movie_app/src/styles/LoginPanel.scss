@@ -1,0 +1,25 @@
+.panel-container {
+	height: 93vh;
+	width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+	
+
+	.login-panel {
+		background-color: #FF4136;
+		width: 300px;
+		height: 300px;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+
+		form {
+			text-align: center;
+			display: flex;
+			height: 100%;
+			align-items: center;
+		}
+	}
+}

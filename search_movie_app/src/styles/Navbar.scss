@@ -1,0 +1,52 @@
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 7vh;
+	background-color: black;
+
+	.navbar-link {
+		display: flex;
+		color: white;
+		text-decoration: none;
+		align-items: center;
+	}
+
+	.main {
+		color: red;
+	}
+
+	.left-side-navbar {
+		display: flex;
+		width: 20%;
+		margin-left: 1rem;
+
+		.navbar-link {
+			margin-left: 1rem;
+		}
+
+        button {
+            font-size: 1rem;
+            color: white;
+			background-color: black;
+        }
+	}
+
+	.right-side-navbar {
+		width: 20%;
+		display: flex;
+		justify-content: flex-end;
+		margin-right: 1rem;
+		height: 3rem;
+
+		.navbar-link {
+			margin-right: 1rem;
+		}
+	}
+
+	.search{
+		height: 1.3rem;
+		width: 1.3rem;
+	}
+	
+}

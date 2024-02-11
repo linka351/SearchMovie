@@ -1,41 +1,41 @@
 .slider {
 	position: relative;
 	display: flex;
-	height: 70vh;
+	height: 80vh;
 	width: 100vw;
 
 	img {
-		height: 70vh;
+		height: 80vh;
 		width: 100vw;
 	}
 
-    .description-movie {
-        position: absolute;
-        background-color: rgb(57, 50, 50);
-        color: white;
-        opacity: 0.7;
-        bottom: 0%;
-        width: 100vw;
-    }
+	.description-movie {
+		position: absolute;
+		background-color: rgb(57, 50, 50);
+		color: white;
+		opacity: 0.7;
+		bottom: 0%;
+		width: 100vw;
+	}
 
 	.btn {
-        display: flex;
+		display: flex;
 		position: absolute;
 		top: 50%;
 		transform: translate(0%, -50%);
 		-ms-transform: translate(-50%, -50%);
 		color: white;
-        background-color: rgb(57, 50, 50);
+		background-color: rgb(57, 50, 50);
 		font-size: 50px;
 		border: none;
 		cursor: pointer;
 		border-radius: 5px;
 	}
 
-    .btn-right {
-        right: 0;
-    }
-    .btn-left {
-        left: 0;
-    }
+	.btn-right {
+		right: 0;
+	}
+	.btn-left {
+		left: 0;
+	}
 }

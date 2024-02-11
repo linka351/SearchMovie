@@ -5,7 +5,7 @@ import { MdNavigateBefore } from "react-icons/md";
 
 const apiKey = "c9de2f7b31706574fa92cef28829a225";
 const imageCount = 1;
-const IMG_URL = "https://image.tmdb.org/t/p/w500/";
+const IMG_URL = "https://image.tmdb.org/t/p/original/";
 
 function Slider() {
 	const [data, setData] = useState([]);
