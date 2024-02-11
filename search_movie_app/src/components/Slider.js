@@ -25,18 +25,49 @@ function Slider() {
 				setData(data.results);
 			});
 	}, []);
-	// useEffect(() => {
-	// 	setInterval(() => {
-	// 		setActiveItemIndex(prev => prev + 1)
-	// 	}, 5000);
-	// }, []);
 
-	console.log(activeItemIndex);
+	useEffect(() => {
+		const lastIndex = data.length - 1;
+
+		if (activeItemIndex < 0) {
+			setActiveItemIndex(lastIndex);
+		}
+
+		if (activeItemIndex > lastIndex) {
+			setActiveItemIndex(0);
+		}
+	}, [activeItemIndex, data]);
+
+	useEffect(() => {
+		let slider = setInterval(() => {
+			setActiveItemIndex(activeItemIndex + 1);
+		}, 5000);
+
+		return () => clearInterval(slider);
+	}, [activeItemIndex]);
+
+	console.log(data);
+
+	// useEffect(() => {
+	// 	const lastIndex = people.length - 1
+	// 	  if (index < 0) {
+	// 		setIndex(lastIndex)
+	// 		}
+	// 	  if (index > lastIndex){
+	// 		setIndex(0)
+	// 		}
+	// 	 }, [index, people])
+
+	//   useEffect(() => {
+	// 	let slider = setInterval(() => {
+	// 	  setIndex(index + 1)
+	// 	 }, 5000);
+	// 	  return () => clearInterval(slider)
+	// 	 }, [index])
 
 	if (data.length === 0) {
 		return <div>Loading...</div>;
 	}
-	console.log(data);
 
 	return (
 		<>
