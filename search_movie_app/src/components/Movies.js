@@ -1,11 +1,5 @@
-
 function Movies() {
-	
-	return (
-		<>
-			
-		</>
-	);
+	return <></>;
 }
 
-export default Movies
+export default Movies;
