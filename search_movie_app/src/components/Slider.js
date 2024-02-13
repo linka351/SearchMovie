@@ -46,25 +46,6 @@ function Slider() {
 		return () => clearInterval(slider);
 	}, [activeItemIndex]);
 
-	console.log(data);
-
-	// useEffect(() => {
-	// 	const lastIndex = people.length - 1
-	// 	  if (index < 0) {
-	// 		setIndex(lastIndex)
-	// 		}
-	// 	  if (index > lastIndex){
-	// 		setIndex(0)
-	// 		}
-	// 	 }, [index, people])
-
-	//   useEffect(() => {
-	// 	let slider = setInterval(() => {
-	// 	  setIndex(index + 1)
-	// 	 }, 5000);
-	// 	  return () => clearInterval(slider)
-	// 	 }, [index])
-
 	if (data.length === 0) {
 		return <div>Loading...</div>;
 	}
