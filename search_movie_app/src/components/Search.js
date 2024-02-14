@@ -13,18 +13,14 @@ function Search() {
 
 	useEffect(() => {
 		fetch(
-			`https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&include_adult=false&language=en-US&page=1&query=${value}'`
+			`https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&include_adult=false&language=en-US&page=1&query=${value}`
 		)
 			.then(response => response.json())
 			.then(data => {
-				console.log(data);
+				//console.log(data);
 				setMovie(data.results);
 			});
 	}, [value]);
-
-	// const onChange = (e) => {
-	// 	e.preventDefault()
-	// }
 
 	return (
 		<>
@@ -36,9 +32,15 @@ function Search() {
 					placeholder='Czego Szukasz?'
 				/>
 				{movie.map(item => {
-					return (
-						<img src={`${IMG_URL}${item.backdrop_path}`} alt={item.title} />
-					);
+					console.log(item);
+					if (item.backdrop_path === null) {
+						return <p>zdjęcie</p>;
+					}
+					if (item.media_type === "movie" || item.media_type === "tv") {
+						return (
+							<img src={`${IMG_URL}${item.backdrop_path}`} alt={item.title} />
+						);
+					}
 				})}
 			</div>
 		</>
