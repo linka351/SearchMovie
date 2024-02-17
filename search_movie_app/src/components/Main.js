@@ -1,5 +1,6 @@
 import "../styles/Main.scss";
-import Slider from "./Slider";
+import  Slider  from "./Slider"
+
 
 function Main() {
 	return (
