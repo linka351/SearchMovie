@@ -1,40 +1,38 @@
 import { useEffect, useState } from "react";
 import "../styles/Movies.scss";
-
-const apiKey = "c9de2f7b31706574fa92cef28829a225";
-const IMG_URL = "https://image.tmdb.org/t/p/w500/";
+import { apiKey, IMG_URL } from "../imageApiKeys";
 
 function Movies() {
 	const [data, setData] = useState([]);
-	const [getPage, setGetPage] = useState(1);
-	const [pages, setPages] = useState(null);
+	const [currentPage, setCurrentPage] = useState(1);
+	const [totalPages, setTotalPages] = useState(null);
 
 	useEffect(() => {
 		fetch(
-			`https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=en-US&page=${getPage}?`
+			`https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=en-US&page=${currentPage}?`
 		)
 			.then(response => response.json())
 			.then(data => {
-				setPages(data.total_pages);
+				setTotalPages(data.total_pages);
 				setData(data.results);
 			});
-	}, [getPage]);
+	}, [currentPage]);
 
 	const takeToNextPage = () => {
-		if (getPage === pages) return;
-		setGetPage(prev => prev + 1);
+		if (currentPage === totalPages) return;
+		setCurrentPage(prev => prev + 1);
 	};
 
 	const takeToPreviousPage = () => {
-		if (getPage === 1) return;
-		setGetPage(prev => prev - 1);
+		if (currentPage === 1) return;
+		setCurrentPage(prev => prev - 1);
 	};
 
 	return (
 		<>
 			<div className='buttons-direction'>
 				<button onClick={takeToPreviousPage}>Prev</button>
-				<p>{`Page ${getPage}/${pages}`}</p>
+				<p>{`Page ${currentPage}/${totalPages}`}</p>
 				<button onClick={takeToNextPage}>Next</button>
 			</div>
 			<div className='movie-page'>
@@ -42,9 +40,7 @@ function Movies() {
 					return (
 						<div className='image'>
 							<img
-								onClick={() => {
-									console.log(item);
-								}}
+								onClick={() => {}}
 								src={`${IMG_URL}${item.backdrop_path}`}
 								alt={item.title}
 							/>
