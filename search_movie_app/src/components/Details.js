@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-
-const apiKey = "c9de2f7b31706574fa92cef28829a225";
-const IMG_URL = "https://image.tmdb.org/t/p/w500/";
-//`https://api.themoviedb.org/3/movie/${params}?api_key=${apiKey}&language=en-US`
+import { Link, useParams } from "react-router-dom";
+import { apiKey, IMG_URL } from "../imageApiKeys";
+import "../styles/details.scss";
+import { FaXmark } from "react-icons/fa6";
 
 function Details() {
 	const params = useParams();
-	const [singleElement, setSingleElement] = useState();
+	const [singleElement, setSingleElement] = useState({});
 
 	useEffect(() => {
 		fetch(`https://api.themoviedb.org/3/movie/${params.id}?api_key=${apiKey}`)
@@ -17,12 +16,26 @@ function Details() {
 			});
 	}, []);
 
-	console.log(singleElement);
-
 	return (
-		<div>
-			<p>{singleElement.title}</p>
-		</div>
+		<>
+			<Link to={"/movies"}>
+				<FaXmark className='faxmark' />
+			</Link>
+			<div className='details'>
+				<img
+					src={`${IMG_URL}${singleElement.backdrop_path}`}
+					alt={`${singleElement.title}`}
+				/>
+				<div className='details-element'>
+					<p className='title'>{singleElement.title}</p>
+					<p className='overview'>{singleElement.overview}</p>
+					<div className='smaller-details'>
+						<p>Production: {singleElement.release_date}</p>
+						<p className='vote'>{singleElement.vote_average}</p>
+					</div>
+				</div>
+			</div>
+		</>
 	);
 }
 

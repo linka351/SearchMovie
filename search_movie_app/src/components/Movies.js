@@ -44,9 +44,7 @@ function Movies() {
 						<Link className='link' to={`/details/${item.id}`}>
 							<div className='image'>
 								<img
-									onClick={() => {
-										console.log(item);
-									}}
+									onClick={() => {}}
 									src={`${IMG_URL}${item.backdrop_path}`}
 									alt={item.title}
 								/>
