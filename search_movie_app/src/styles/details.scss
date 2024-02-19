@@ -39,6 +39,18 @@
 		display: flex;
 		justify-content: space-between;
 
+		.production {
+			height: 3rem;
+			display: flex;
+			align-items: center;
+			font-size: 1.2rem;
+
+			.span {
+				font-weight: bold;
+				margin-left: 5%;
+			}
+		}
+
 		.vote {
 			display: flex;
 			align-items: center;
@@ -46,6 +58,7 @@
 			background-color: gold;
 			width: 3rem;
 			height: 3rem;
+			font-size: 1.2rem;
 			border-radius: 50%;
 		}
 	}

@@ -16,9 +16,11 @@ function Details() {
 			});
 	}, []);
 
+	console.log(typeof singleElement.vote_average);
+
 	return (
 		<>
-			<Link to={"/movies"}>
+			<Link to={"/"}>
 				<FaXmark className='faxmark' />
 			</Link>
 			<div className='details'>
@@ -30,8 +32,13 @@ function Details() {
 					<p className='title'>{singleElement.title}</p>
 					<p className='overview'>{singleElement.overview}</p>
 					<div className='smaller-details'>
-						<p>Production: {singleElement.release_date}</p>
-						<p className='vote'>{singleElement.vote_average}</p>
+						<p className='production'>
+							Production:{" "}
+							<span className='span'>
+								{singleElement.release_date?.slice(0, 4)}
+							</span>
+						</p>
+						<p className='vote'>{singleElement.vote_average?.toFixed(1)}</p>
 					</div>
 				</div>
 			</div>
