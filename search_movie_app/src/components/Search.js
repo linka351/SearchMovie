@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { FaEyeSlash } from "react-icons/fa6";
+import "../styles/singleTvSeriesAndMovieElement.scss";
 
 const apiKey = "c9de2f7b31706574fa92cef28829a225";
 const IMG_URL = "https://image.tmdb.org/t/p/w500/";
@@ -6,6 +8,8 @@ const IMG_URL = "https://image.tmdb.org/t/p/w500/";
 function Search() {
 	const [value, setValue] = useState("");
 	const [movie, setMovie] = useState([]);
+	const [currentPage, setCurrentPage] = useState(1);
+	const [totalPages, setTotalPages] = useState(null);
 
 	const search = e => {
 		setValue(e.target.value);
@@ -17,13 +21,29 @@ function Search() {
 		)
 			.then(response => response.json())
 			.then(data => {
-				//console.log(data);
+				console.log(data);
+				setTotalPages(data.total_pages);
 				setMovie(data.results);
 			});
-	}, [value]);
+	}, [value, currentPage]);
+
+	const takeToNextPage = () => {
+		if (currentPage === totalPages) return;
+		setCurrentPage(prev => prev + 1);
+	};
+
+	const takeToPreviousPage = () => {
+		if (currentPage === 1) return;
+		setCurrentPage(prev => prev - 1);
+	};
 
 	return (
 		<>
+			<div className='buttons-direction'>
+				<button onClick={takeToPreviousPage}>Prev</button>
+				<p>{`Page ${currentPage}/${totalPages}`}</p>
+				<button onClick={takeToNextPage}>Next</button>
+			</div>
 			<div className='search'>
 				<input
 					type='text'
@@ -31,17 +51,33 @@ function Search() {
 					onChange={search}
 					placeholder='Czego Szukasz?'
 				/>
-				{movie.map(item => {
-					console.log(item);
-					if (item.backdrop_path === null) {
-						return <p>zdjęcie</p>;
-					}
-					if (item.media_type === "movie" || item.media_type === "tv") {
-						return (
-							<img src={`${IMG_URL}${item.backdrop_path}`} alt={item.title} />
-						);
-					}
-				})}
+				<div className='movie-page'>
+					{movie.map(item => {
+						if (item.backdrop_path === null) {
+							return (
+								<div className='image'>
+									<FaEyeSlash className='icon' />
+									<div className='movie-description'>
+										<p>{item.title || item.name}</p>
+									</div>
+								</div>
+							);
+						}
+						if (item.media_type === "movie" || item.media_type === "tv") {
+							return (
+								<div className='image'>
+									<img
+										src={`${IMG_URL}${item.backdrop_path}`}
+										alt={item.title || item.name}
+									/>
+									<div className='movie-description'>
+										<p>{item.title || item.name}</p>
+									</div>
+								</div>
+							);
+						}
+					})}
+				</div>
 			</div>
 		</>
 	);
