@@ -1,9 +1,7 @@
+import MovieTvSeriesList from "./MovieTvSeriesList";
+
 function Series() {
-	return (
-		<>
-			<p>Series</p>
-		</>
-	);
+	return <MovieTvSeriesList api={"tv"} />;
 }
 
-export default Series
+export default Series;
