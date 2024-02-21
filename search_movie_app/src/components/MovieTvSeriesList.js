@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import "../styles/Movies.scss";
+import { FaEyeSlash } from "react-icons/fa6";
+import "../styles/singleTvSeriesAndMovieElement.scss";
 import { IMG_URL, apiKey } from "../imageApiKeys";
 
 function MovieTvSeriesList({ api }) {
@@ -37,6 +38,16 @@ function MovieTvSeriesList({ api }) {
 			</div>
 			<div className='movie-page'>
 				{data.map(item => {
+					if (item.backdrop_path === null) {
+						return (
+							<div className='image'>
+								<FaEyeSlash className='icon' />
+								<div className='movie-description'>
+									<p>{item.title || item.name}</p>
+								</div>
+							</div>
+						);
+					}
 					return (
 						<div className='image'>
 							<img
