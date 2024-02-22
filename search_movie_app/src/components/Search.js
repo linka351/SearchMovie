@@ -17,11 +17,11 @@ function Search() {
 
 	useEffect(() => {
 		fetch(
-			`https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&include_adult=false&language=en-US&page=1&query=${value}`
+			`https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&include_adult=false&language=en-US&page=${currentPage}&query=${value}`
 		)
 			.then(response => response.json())
 			.then(data => {
-				console.log(data);
+				console.log(data.results);
 				setTotalPages(data.total_pages);
 				setMovie(data.results);
 			});
