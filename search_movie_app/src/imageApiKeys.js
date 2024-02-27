@@ -1,2 +1,2 @@
-export const apiKey = "c9de2f7b31706574fa92cef28829a225";
+export const apiKey = process.env.REACT_APP_IMAGE_API_KEY;
 export const IMG_URL = "https://image.tmdb.org/t/p/w500/";
