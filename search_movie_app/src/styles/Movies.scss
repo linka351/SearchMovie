@@ -29,6 +29,10 @@
 	align-items: center;
 	cursor: pointer;
 
+	.link {
+		text-decoration: none;
+	}
+
 	.image {
 		height: 40vh;
 		background-color: black;

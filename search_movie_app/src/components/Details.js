@@ -15,12 +15,10 @@ function Details() {
 				setSingleElement(data);
 			});
 	}, []);
-
-	console.log(typeof singleElement.vote_average);
-
+	console.log(singleElement.title);
 	return (
 		<>
-			<Link to={"/"}>
+			<Link to={singleElement.title ? "/movies" : "/series"}>
 				<FaXmark className='faxmark' />
 			</Link>
 			<div className='details'>
@@ -33,12 +31,19 @@ function Details() {
 					<p className='overview'>{singleElement.overview}</p>
 					<div className='smaller-details'>
 						<p className='production'>
-							Production:{" "}
-							<span className='span'>
-								{singleElement.release_date?.slice(0, 4)}
+							Production:
+							<span className='date'>
+								{singleElement.release_date
+									? singleElement.release_date.slice(0, 4)
+									: "N/A"}
 							</span>
 						</p>
-						<p className='vote'>{singleElement.vote_average?.toFixed(1)}</p>
+
+						<p className='vote'>
+							{singleElement.vote_average
+								? singleElement.vote_average.toFixed(1)
+								: "N/A"}
+						</p>
 					</div>
 				</div>
 			</div>
