@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { FaEyeSlash } from "react-icons/fa6";
-import "../styles/singleTvSeriesAndMovieElement.scss";
+import "../styles/itemGrid.scss";
 
 const apiKey = "c9de2f7b31706574fa92cef28829a225";
 const IMG_URL = "https://image.tmdb.org/t/p/w500/";
@@ -56,7 +56,9 @@ function Search() {
 						if (item.backdrop_path === null) {
 							return (
 								<div className='image'>
-									<FaEyeSlash className='icon' />
+									<div className='icon-container'>
+										<FaEyeSlash className='icon' />
+									</div>
 									<div className='movie-description'>
 										<p>{item.title || item.name}</p>
 									</div>
