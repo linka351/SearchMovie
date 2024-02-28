@@ -5,7 +5,9 @@ import Movies from "./components/Movies";
 import Profile from "./components/Profile";
 import Navbar from "./components/Navbar";
 import Series from "./components/Series";
-import Search from "./components/Search";
+import SearchTvSeries from "./components/SearchTvSeries";
+import SearchMovie from "./components/SearchMovie";
+import SearchPage from "./components/SearchPage";
 
 const router = createBrowserRouter([
 	{
@@ -24,12 +26,20 @@ const router = createBrowserRouter([
 				element: <Profile />,
 			},
 			{
-				path: "/search",
-				element: <Search />,
+				path: "/searchPage",
+				element: <SearchPage />,
 			},
 			{
 				path: "/series",
 				element: <Series />,
+			},
+			{
+				path: "/searchMovies",
+				element: <SearchMovie />,
+			},
+			{
+				path: "/searchTvSeries",
+				element: <SearchTvSeries />,
 			},
 		],
 	},
