@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { FaEyeSlash } from "react-icons/fa6";
-import "../styles/singleTvSeriesAndMovieElement.scss";
+import "../styles/itemGrid.scss";
 import { IMG_URL, apiKey } from "../imageApiKeys";
+import noImage from "../images/noImage.jpg";
 
-function MovieTvSeriesList({ api }) {
+function ItemGrid({ api }) {
 	const [data, setData] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(null);
@@ -38,10 +39,19 @@ function MovieTvSeriesList({ api }) {
 			</div>
 			<div className='movie-page'>
 				{data.map(item => {
+					console.log(item);
 					if (item.backdrop_path === null) {
 						return (
+							// <div className='image'>
+							// 	<div className='icon-container'>
+							// 		<FaEyeSlash className='icon' />
+							// 	</div>
+							// 	<div className='movie-description'>
+							// 		<p>{item.title || item.name}</p>
+							// 	</div>
+							// </div>
 							<div className='image'>
-								<FaEyeSlash className='icon' />
+								<img src={noImage} alt={item.title || item.name} />
 								<div className='movie-description'>
 									<p>{item.title || item.name}</p>
 								</div>
@@ -51,7 +61,6 @@ function MovieTvSeriesList({ api }) {
 					return (
 						<div className='image'>
 							<img
-								onClick={() => {}}
 								src={`${IMG_URL}${item.backdrop_path}`}
 								alt={item.title || item.name}
 							/>
@@ -66,4 +75,4 @@ function MovieTvSeriesList({ api }) {
 	);
 }
 
-export default MovieTvSeriesList;
+export default ItemGrid;

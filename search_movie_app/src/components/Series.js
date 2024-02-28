@@ -1,7 +1,7 @@
-import MovieTvSeriesList from "./MovieTvSeriesList";
+import ItemGrid from "./ItemGrid";
 
 function Series() {
-	return <MovieTvSeriesList api={"tv"} />;
+	return <ItemGrid api={"tv"} />;
 }
 
 export default Series;
