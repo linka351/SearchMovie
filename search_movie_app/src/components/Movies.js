@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import "../styles/Movies.scss";
 import { apiKey, IMG_URL } from "../imageApiKeys";
+import { Link } from "react-router-dom";
+import FavouritesIcon from "./FavouritesIcon";
 
 function Movies() {
 	const [data, setData] = useState([]);
@@ -38,16 +40,19 @@ function Movies() {
 			<div className='movie-page'>
 				{data.map(item => {
 					return (
-						<div className='image'>
-							<img
-								onClick={() => {}}
-								src={`${IMG_URL}${item.backdrop_path}`}
-								alt={item.title}
-							/>
-							<div className='movie-description'>
-								<p>{item.title}</p>
+						<Link className='link' to={`/details/${item.id}`}>
+							<div className='image'>
+								<img
+									onClick={() => {}}
+									src={`${IMG_URL}${item.backdrop_path}`}
+									alt={item.title}
+								/>
+								<div className='movie-description'>
+									<p>{item.title}</p>
+									<FavouritesIcon />
+								</div>
 							</div>
-						</div>
+						</Link>
 					);
 				})}
 			</div>

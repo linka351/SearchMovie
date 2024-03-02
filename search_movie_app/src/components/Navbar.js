@@ -11,8 +11,6 @@ function Navbar() {
 		setIsOpen(!isOpen);
 	};
 
-	console.log(localStorage.name);
-
 	return (
 		<>
 			<div className='navbar'>
@@ -29,6 +27,9 @@ function Navbar() {
 					<Link className='navbar-link' to={"/series"}>
 						Series
 					</Link>
+					<Link className='navbar-link' to={"/favourites"}>
+						Favourites
+					</Link>
 				</div>
 				<Link className='navbar-link main' to={"/"}>
 					<p>MovieSearch</p>
@@ -38,7 +39,7 @@ function Navbar() {
 						<FaMagnifyingGlass className='search' />
 					</Link>
 					<Link className='navbar-link' to={"/profile"}>
-						{localStorage.length === 1 ? JSON.parse(localStorage.name) : "Anon"}
+						Anon
 					</Link>
 				</div>
 			</div>
