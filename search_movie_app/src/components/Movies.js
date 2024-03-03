@@ -41,11 +41,7 @@ function Movies() {
 					return (
 						<Link className='link' to={`/details/${item.id}`}>
 							<div className='image'>
-								<img
-									onClick={() => {}}
-									src={`${IMG_URL}${item.backdrop_path}`}
-									alt={item.title}
-								/>
+								<img src={`${IMG_URL}${item.backdrop_path}`} alt={item.title} />
 								<div className='movie-description'>
 									<p>{item.title}</p>
 								</div>
