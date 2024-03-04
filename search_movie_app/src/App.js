@@ -3,15 +3,15 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Main from "./components/Main";
 import Movies from "./components/Movies";
 import Profile from "./components/Profile";
-import Navbar from "./components/Navbar";
 import Series from "./components/Series";
 import SearchTvSeries from "./components/SearchTvSeries";
 import SearchMovie from "./components/SearchMovie";
 import SearchPage from "./components/SearchPage";
+import Layout from "./components/Layout";
 
 const router = createBrowserRouter([
 	{
-		element: <Navbar />,
+		element: <Layout />,
 		children: [
 			{
 				path: "/",

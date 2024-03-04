@@ -1,11 +1,8 @@
 import "../styles/Main.scss";
+import Slider from "./Slider";
 
 function Main() {
-	return (
-		<div>
-			<p>hi</p>
-		</div>
-	);
+	return <div>{<Slider />}</div>;
 }
 
 export default Main;
