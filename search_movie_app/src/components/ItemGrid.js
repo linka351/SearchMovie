@@ -15,11 +15,13 @@ function ItemGrid({ data, currentPage, totalPages, changePage }) {
 
 	return (
 		<>
-			<div className='buttons-direction'>
-				<button onClick={takeToPreviousPage}>Prev</button>
-				<p>{`Page ${currentPage}/${totalPages}`}</p>
-				<button onClick={takeToNextPage}>Next</button>
-			</div>
+			{totalPages > 1 && (
+				<div className='buttons-direction'>
+					<button onClick={takeToPreviousPage}>Prev</button>
+					<p>{`Page ${currentPage}/${totalPages}`}</p>
+					<button onClick={takeToNextPage}>Next</button>
+				</div>
+			)}
 			<div className='movie-page'>
 				{data.map(item => {
 					return (
