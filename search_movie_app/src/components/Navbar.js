@@ -4,15 +4,15 @@ import { useState } from "react";
 import Offcanvas from "./Offcanvas";
 import "../styles/Navbar.scss";
 import "../styles/Offcanvas.scss";
+import LoginPanel from "./LoginPanel";
+
+let loginExist = JSON.parse(localStorage.getItem("name"));
 
 function Navbar() {
 	const [isOpen, setIsOpen] = useState(false);
 	const toggleMenu = () => {
 		setIsOpen(!isOpen);
 	};
-
-	console.log(localStorage.name);
-
 	return (
 		<>
 			<div className='navbar'>
@@ -38,11 +38,12 @@ function Navbar() {
 						<FaMagnifyingGlass className='search' />
 					</Link>
 					<Link className='navbar-link' to={"/profile"}>
-						{localStorage.length === 1 ? JSON.parse(localStorage.name) : "Anon"}
+						{loginExist !== null ? JSON.parse(localStorage.name) : "N/A"}
 					</Link>
 				</div>
 			</div>
 			{<Offcanvas showMenu={isOpen} />}
+			{loginExist === null && <LoginPanel />}
 		</>
 	);
 }

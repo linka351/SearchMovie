@@ -8,9 +8,15 @@ const addInitial = () => {
 };
 
 function LoginPanel() {
-	const [name, setName] = useState(addInitial)
+	const [name, setName] = useState(addInitial);
+	const [error, setError] = useState("");
 	const addToLocalStorage = () => {
 		localStorage.setItem("name", JSON.stringify(name));
+	};
+
+	const lockButton = e => {
+		e.preventDefault();
+		setError("Proszę podać nazwę użytkownika!");
 	};
 
 	return (
@@ -18,13 +24,18 @@ function LoginPanel() {
 			<div className='login-panel'>
 				<form>
 					<label>
-						Proszę podaj swoje imię
+						<p>Podaj swoją nazwę aby się zalogować</p>
 						<input
 							type='text'
 							value={name}
 							onChange={e => setName(e.target.value)}
 						/>
-						<button onClick={addToLocalStorage}>Add</button>
+						<p className='error'>{error}</p>
+						{name === "" ? (
+							<button onClick={lockButton}>Add</button>
+						) : (
+							<button onClick={addToLocalStorage}>Add</button>
+						)}
 					</label>
 				</form>
 			</div>
