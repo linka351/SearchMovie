@@ -1,27 +1,42 @@
-
-.fabar {
+.fabar-side-nav {
 	color: white;
 	font-size: 1.5rem;
 }
-.faxmark {
+.faxmark-side-nav {
 	color: white;
 	font-size: 1.5rem;
 }
 
 .sidenav {
-	width: 15rem;
+	width: 20%;
 	background-color: grey;
 	position: absolute;
 	height: 93vh;
 	padding: 0 30px;
 	left: -100%;
 	transition: 1s;
+	z-index: 1;
+	background-color: black;
+
+	.link {
+		display: flex;
+		font-size: 1.5rem;
+		flex-direction: column;
+		color: white;
+		text-decoration: none;
+		padding: 10px;
+		background-color: rgb(47, 42, 42);
+		margin: 15%;
+		text-align: center;
+		width: 90%;
+		margin-left: 0;
+		border-radius: 10px;
+		&:hover {
+			background-color: lighten($color: black, $amount: 30%);
+		}
+	}
 }
 
 .sidenav.active {
 	left: 0;
 }
-
-
-
-
