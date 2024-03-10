@@ -5,14 +5,14 @@ import Offcanvas from "./Offcanvas";
 import "../styles/Navbar.scss";
 import "../styles/Offcanvas.scss";
 import LoginPanel from "./LoginPanel";
-
-let loginExist = JSON.parse(localStorage.getItem("name"));
+import { useUserContext } from "./UserContext";
 
 function Navbar() {
 	const [isOpen, setIsOpen] = useState(false);
 	const toggleMenu = () => {
 		setIsOpen(!isOpen);
 	};
+	const { user, userLogin } = useUserContext();
 	return (
 		<>
 			<div className='navbar'>
@@ -38,12 +38,12 @@ function Navbar() {
 						<FaMagnifyingGlass className='search' />
 					</Link>
 					<Link className='navbar-link' to={"/profile"}>
-						{loginExist !== null ? JSON.parse(localStorage.name) : "N/A"}
+						{user}
 					</Link>
 				</div>
 			</div>
-			{<Offcanvas showMenu={isOpen} />}
-			{loginExist === null && <LoginPanel />}
+			<Offcanvas showMenu={isOpen} />
+			{userLogin === null && <LoginPanel />}
 		</>
 	);
 }
