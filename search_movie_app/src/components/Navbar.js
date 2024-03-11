@@ -12,6 +12,10 @@ function Navbar() {
 		setIsOpen(!isOpen);
 	};
 
+	const closeMenu = () => {
+		setIsOpen(false);
+	};
+
 	return (
 		<>
 			<div className='navbar'>
@@ -41,7 +45,7 @@ function Navbar() {
 					</Link>
 				</div>
 			</div>
-			{<Offcanvas showMenu={isOpen} closeMenu={toggleMenu} />}
+			{<Offcanvas showMenu={isOpen} closeMenu={closeMenu} />}
 		</>
 	);
 }
