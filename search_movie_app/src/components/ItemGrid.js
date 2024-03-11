@@ -1,6 +1,7 @@
 import "../styles/itemGrid.scss";
 import { IMG_URL } from "../imageApiKeys";
 import noImage from "../images/noImage.jpg";
+import { Link } from "react-router-dom";
 
 function ItemGrid({ data, currentPage, totalPages, changePage }) {
 	const takeToNextPage = () => {
@@ -24,24 +25,26 @@ function ItemGrid({ data, currentPage, totalPages, changePage }) {
 				{data.map(item => {
 					return (
 						<>
-							{item.backdrop_path === null ? (
-								<div className='image'>
-									<img src={noImage} alt={item.title || item.name} />
-									<div className='movie-description'>
-										<p>{item.title || item.name}</p>
+							<Link to={`/details/${item.id}`}>
+								{item.backdrop_path === null ? (
+									<div className='image'>
+										<img src={noImage} alt={item.title || item.name} />
+										<div className='movie-description'>
+											<p>{item.title || item.name}</p>
+										</div>
 									</div>
-								</div>
-							) : (
-								<div className='image'>
-									<img
-										src={`${IMG_URL}${item.backdrop_path}`}
-										alt={item.title || item.name}
-									/>
-									<div className='movie-description'>
-										<p>{item.title || item.name}</p>
+								) : (
+									<div className='image'>
+										<img
+											src={`${IMG_URL}${item.backdrop_path}`}
+											alt={item.title || item.name}
+										/>
+										<div className='movie-description'>
+											<p>{item.title || item.name}</p>
+										</div>
 									</div>
-								</div>
-							)}
+								)}
+							</Link>
 						</>
 					);
 				})}

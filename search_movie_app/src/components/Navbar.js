@@ -11,8 +11,6 @@ function Navbar() {
 		setIsOpen(!isOpen);
 	};
 
-	console.log(localStorage.name);
-
 	return (
 		<>
 			<div className='navbar'>
