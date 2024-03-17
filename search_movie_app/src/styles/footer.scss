@@ -1,0 +1,18 @@
+.footer {
+	height: 5%;
+	background-color: black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 5%;
+	font-size: 1.2rem;
+
+	.icon {
+		color: white;
+		margin-right: 10px;
+	}
+
+	p {
+		color: white;
+	}
+}
