@@ -13,19 +13,18 @@ export const useUserContext = () => useContext(UserContext);
 
 const UserContextProvider = ({ children }) => {
 	const [error, setError] = useState("");
-	const [user, setUser] = useState("");
+	const [name, setName] = useState("");
 	const [userLogin, setUserLogin] = useState("");
 
 	useEffect(() => {
 		const loginExist = JSON.parse(localStorage.getItem("name"));
 		setUserLogin(loginExist);
-		setUser(loginExist);
 	}, []);
 
 	const addToLocalStorage = e => {
 		e.preventDefault();
-		setUserLogin(user);
-		localStorage.setItem("name", JSON.stringify(user));
+		setUserLogin(name);
+		localStorage.setItem("name", JSON.stringify(name));
 	};
 
 	const lockButton = e => {
@@ -34,13 +33,13 @@ const UserContextProvider = ({ children }) => {
 	};
 
 	const enterUser = e => {
-		setUser(e.target.value);
+		setName(e.target.value);
 	};
 
 	return (
 		<UserContext.Provider
 			value={{
-				user: user,
+				name: name,
 				error: error,
 				addToLocalStorage: addToLocalStorage,
 				lockButton: lockButton,

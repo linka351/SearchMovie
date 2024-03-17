@@ -2,7 +2,7 @@ import "../styles/LoginPanel.scss";
 import { useUserContext } from "./UserContext";
 
 function LoginPanel() {
-	const { user, error, addToLocalStorage, lockButton, enterUser } =
+	const { name, error, addToLocalStorage, lockButton, enterUser } =
 		useUserContext();
 	return (
 		<div className='panel-container'>
@@ -10,9 +10,9 @@ function LoginPanel() {
 				<form>
 					<label>
 						<p>Podaj swoją nazwę aby się zalogować</p>
-						<input type='text' value={user} onChange={enterUser} />
+						<input type='text' value={name} onChange={enterUser} />
 						<p className='error'>{error}</p>
-						{user === "" ? (
+						{name === "" ? (
 							<button onClick={lockButton}>Add</button>
 						) : (
 							<button onClick={addToLocalStorage}>Add</button>

@@ -12,7 +12,7 @@ function Navbar() {
 	const toggleMenu = () => {
 		setIsOpen(!isOpen);
 	};
-	const { user, userLogin } = useUserContext();
+	const { name, userLogin } = useUserContext();
 	return (
 		<>
 			<div className='navbar'>
@@ -38,7 +38,7 @@ function Navbar() {
 						<FaMagnifyingGlass className='search' />
 					</Link>
 					<Link className='navbar-link' to={"/profile"}>
-						{user}
+						{name}
 					</Link>
 				</div>
 			</div>
