@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import { Link, json, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { apiKey, IMG_URL } from "../imageApiKeys";
 import "../styles/details.scss";
 import { FaXmark } from "react-icons/fa6";
 import FavouritesIcon from "./FavouritesIcon";
+import { useFavouritesContext } from "../context/FavouritesContext";
 
 function Details() {
 	const params = useParams();
 	const [singleElement, setSingleElement] = useState({});
+	const { addFavourite, favourites, removeFavourite } = useFavouritesContext();
 
 	useEffect(() => {
 		fetch(`https://api.themoviedb.org/3/movie/${params.id}?api_key=${apiKey}`)
@@ -17,31 +19,18 @@ function Details() {
 			});
 	}, []);
 
-	let existingFavouriteArray = JSON.parse(
-		localStorage.getItem("favouriteArray")
-	);
-	if (existingFavouriteArray === null) {
-		localStorage.setItem("favouriteArray", JSON.stringify([]));
-	}
+	const isFavourite = favourites.some(fav => fav.title === singleElement.title);
 
-	const addInitial = {
-		title: singleElement.title,
-		backdrop_path: singleElement.backdrop_path,
-	};
-
-	const addToStorage = () => {
-		const favouriteArray = JSON.parse(localStorage.getItem("favouriteArray"));
-		const index = favouriteArray.findIndex(item => {
-			return item.title === addInitial.title;
-		});
-
-		if (index === -1) {
-			favouriteArray.push(addInitial);
-			localStorage.setItem("favouriteArray", JSON.stringify(favouriteArray));
-		} else {
-			favouriteArray.splice(index, 1);
-			localStorage.setItem("favouriteArray", JSON.stringify(favouriteArray));
+	const handleFavouriteClick = () => {
+		if (isFavourite) {
+			removeFavourite(singleElement.title);
+			return;
 		}
+
+		addFavourite({
+			title: singleElement.title,
+			backdrop_path: singleElement.backdrop_path,
+		});
 	};
 
 	return (
@@ -67,8 +56,8 @@ function Details() {
 							</span>
 						</p>
 						<div className='smaller-details-right'>
-							<button onClick={addToStorage}>
-								<FavouritesIcon />
+							<button onClick={handleFavouriteClick}>
+								<FavouritesIcon classname={isFavourite && "active-icon"} />
 							</button>
 
 							<p className='vote'>
