@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { apiKey } from "../imageApiKeys";
 
 function Series() {
-	const [data, setData] = useState([]);
+	const [data, setData] = useState(null);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(null);
 
@@ -18,7 +18,7 @@ function Series() {
 			.then(response => response.json())
 			.then(data => {
 				setTotalPages(data.total_pages);
-				setData(data.results);
+				setData({ items: data.results, type: "tv" });
 			});
 	}, [currentPage]);
 	return (

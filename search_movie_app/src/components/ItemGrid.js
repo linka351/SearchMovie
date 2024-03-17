@@ -2,8 +2,15 @@ import "../styles/itemGrid.scss";
 import { IMG_URL } from "../imageApiKeys";
 import noImage from "../images/noImage.jpg";
 import { Link } from "react-router-dom";
+import ReactLoading from "react-loading";
 
 function ItemGrid({ data, currentPage, totalPages, changePage }) {
+	if (!data) {
+		return (
+			<ReactLoading type='spin' height={"20%"} color='black' width={"20%"} />
+		);
+	}
+
 	const takeToNextPage = () => {
 		if (currentPage === totalPages) return;
 		changePage(prev => prev + 1);
@@ -14,6 +21,8 @@ function ItemGrid({ data, currentPage, totalPages, changePage }) {
 		changePage(prev => prev - 1);
 	};
 
+	const { items, type } = data;
+
 	return (
 		<>
 			<div className='buttons-direction'>
@@ -22,10 +31,10 @@ function ItemGrid({ data, currentPage, totalPages, changePage }) {
 				<button onClick={takeToNextPage}>Next</button>
 			</div>
 			<div className='movie-page'>
-				{data.map(item => {
+				{items.map(item => {
 					return (
 						<>
-							<Link to={`/details/${item.id}`}>
+							<Link to={`/details/${type}/${item.id}`}>
 								{item.backdrop_path === null ? (
 									<div className='image'>
 										<img src={noImage} alt={item.title || item.name} />
