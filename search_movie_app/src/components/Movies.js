@@ -1,8 +1,6 @@
 import ItemGrid from "./ItemGrid";
 import { useEffect, useState } from "react";
 import { apiKey } from "../imageApiKeys";
-import { Link } from "react-router-dom";
-import FavouritesIcon from "./FavouritesIcon";
 
 function Movies() {
 	const [data, setData] = useState([]);

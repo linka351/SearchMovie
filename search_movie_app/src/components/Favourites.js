@@ -1,4 +1,3 @@
-import "../styles/Movies.scss";
 import { IMG_URL } from "../imageApiKeys";
 
 function Favourites() {
