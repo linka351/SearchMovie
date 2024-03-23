@@ -9,21 +9,14 @@ function SearchPage() {
 	const [data, setData] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(null);
-	const [searchItem, setSearchItem] = useState(true);
+	const [selectedType, setSelectedType] = useState("movie");
 
 	const changePage = page => {
 		setCurrentPage(page);
 	};
 
-	const searchMovie = e => {
-		e.preventDefault();
-		setSearchItem(true);
-		setValue("");
-	};
-	const searchTvSeries = e => {
-		e.preventDefault();
-		setSearchItem(false);
-		setValue("");
+	const changeType = type => {
+		setSelectedType(type);
 	};
 
 	const search = e => {
@@ -32,34 +25,45 @@ function SearchPage() {
 	};
 
 	useEffect(() => {
-		searchItem
-			? fetch(
-					`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&include_adult=false&language=en-US&page=${currentPage}&query=${value}`
-			  )
-					.then(response => response.json())
-					.then(data => {
-						setTotalPages(data.total_pages);
-						setData(data.results);
-					})
-			: fetch(
-					`https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&include_adult=false&language=en-US&page=${currentPage}&query=${value}`
-			  )
-					.then(response => response.json())
-					.then(data => {
-						setTotalPages(data.total_pages);
-						setData(data.results);
-					});
-	}, [currentPage, value]);
+		if (!value) {
+			setTotalPages(null);
+			setData([]);
+
+			return;
+		}
+
+		const timeoutId = setTimeout(() => {
+			fetch(
+				`https://api.themoviedb.org/3/search/${selectedType}?api_key=${apiKey}&include_adult=false&language=en-US&page=${currentPage}&query=${value}`
+			)
+				.then(response => response.json())
+				.then(data => {
+					setTotalPages(data.total_pages);
+					setData(data.results);
+				});
+		}, 300);
+
+		return () => {
+			clearTimeout(timeoutId);
+		};
+	}, [currentPage, selectedType, value]);
 
 	return (
 		<>
-			<SearchInput
-				onChange={search}
-				value={value}
-				searchItem={searchItem}
-				searchMovie={searchMovie}
-				searchTvSeries={searchTvSeries}
-			/>
+			<p className='search-question'>What are you looking for?</p>
+			<div className='search-box'>
+				<button
+					className={`link ${selectedType === "movie" && "active"}`}
+					onClick={() => changeType("movie")}>
+					Search Movies
+				</button>
+				<button
+					className={`link ${selectedType === "tv" && "active"}`}
+					onClick={() => changeType("tv")}>
+					Search Tv Series
+				</button>
+			</div>
+			<SearchInput onChange={search} value={value} />
 			{data.length === 0 && value.length > 0 && "Brak wpisanego elementu"}
 			<ItemGrid
 				data={data}

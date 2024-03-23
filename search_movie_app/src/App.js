@@ -24,7 +24,7 @@ const router = createBrowserRouter([
 				element: <Profile />,
 			},
 			{
-				path: "/searchPage",
+				path: "/search",
 				element: <SearchPage />,
 			},
 			{
