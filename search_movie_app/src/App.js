@@ -49,9 +49,9 @@ const router = createBrowserRouter([
 function App() {
 	return (
 		<FavouritesContextProvider>
-			<div>
+			<>
 				<RouterProvider router={router} />
-			</div>
+			</>
 		</FavouritesContextProvider>
 	);
 }
