@@ -4,13 +4,15 @@ import { useState } from "react";
 import Offcanvas from "./Offcanvas";
 import "../styles/Navbar.scss";
 import "../styles/Offcanvas.scss";
+import LoginPanel from "./LoginPanel";
+import { useUserContext } from "./UserContext";
 
 function Navbar() {
 	const [isOpen, setIsOpen] = useState(false);
 	const toggleMenu = () => {
 		setIsOpen(!isOpen);
 	};
-
+	const { userLogin } = useUserContext();
 	return (
 		<>
 			<div className='navbar'>
@@ -39,11 +41,12 @@ function Navbar() {
 						<FaMagnifyingGlass className='search' />
 					</Link>
 					<Link className='navbar-link' to={"/profile"}>
-						Anon
+						{userLogin}
 					</Link>
 				</div>
 			</div>
-			{<Offcanvas showMenu={isOpen} />}
+			<Offcanvas showMenu={isOpen} />
+			{userLogin === null && <LoginPanel />}
 		</>
 	);
 }

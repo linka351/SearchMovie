@@ -8,6 +8,7 @@ import Search from "./components/Search";
 import Layout from "./components/Layout";
 import Favourites from "./components/Favourites";
 import Details from "./components/Details";
+import UserContextProvider from "./components/UserContext";
 import FavouritesContextProvider from "./context/FavouritesContext";
 
 const router = createBrowserRouter([
@@ -48,11 +49,13 @@ const router = createBrowserRouter([
 
 function App() {
 	return (
-		<FavouritesContextProvider>
-			<>
-				<RouterProvider router={router} />
-			</>
-		</FavouritesContextProvider>
+		<UserContextProvider>
+			<FavouritesContextProvider>
+				<>
+					<RouterProvider router={router} />
+				</>
+			</FavouritesContextProvider>
+		</UserContextProvider>
 	);
 }
 
