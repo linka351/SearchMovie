@@ -7,6 +7,7 @@ import Series from "./components/Series";
 import Search from "./components/Search";
 import Layout from "./components/Layout";
 import Details from "./components/Details";
+import UserContextProvider from "./components/UserContext";
 
 const router = createBrowserRouter([
 	{
@@ -42,9 +43,11 @@ const router = createBrowserRouter([
 
 function App() {
 	return (
-		<div>
-			<RouterProvider router={router} />
-		</div>
+		<UserContextProvider>
+			<div>
+				<RouterProvider router={router} />
+			</div>
+		</UserContextProvider>
 	);
 }
 

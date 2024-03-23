@@ -1,6 +1,7 @@
 import ItemGrid from "./ItemGrid";
 import { useEffect, useState } from "react";
 import { apiKey } from "../imageApiKeys";
+import { dataType } from "../constance/data.constance";
 
 function Series() {
 	const [data, setData] = useState(null);
@@ -18,7 +19,7 @@ function Series() {
 			.then(response => response.json())
 			.then(data => {
 				setTotalPages(data.total_pages);
-				setData({ items: data.results, type: "tv" });
+				setData({ items: data.results, type: dataType.tv });
 			});
 	}, [currentPage]);
 	return (
