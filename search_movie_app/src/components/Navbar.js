@@ -20,7 +20,7 @@ function Navbar() {
 					{!isOpen ? (
 						<FaBars className='fabar' onClick={toggleMenu} />
 					) : (
-						<FaXmark className='faxmark' onClick={toggleMenu} />
+						<FaXmark className='faxmark-offcanvas' onClick={toggleMenu} />
 					)}
 
 					<Link className='navbar-link' to={"/movies"}>

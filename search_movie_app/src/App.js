@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Main from "./components/Main";
 import Movies from "./components/Movies";

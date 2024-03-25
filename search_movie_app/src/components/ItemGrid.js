@@ -17,7 +17,7 @@ function ItemGrid({ data, currentPage, totalPages, changePage }) {
 		<>
 			<div className='buttons-direction'>
 				<button onClick={takeToPreviousPage}>Prev</button>
-				<p>{`Page ${currentPage}/${totalPages}`}</p>
+				<p>{`${currentPage}/${totalPages}`}</p>
 				<button onClick={takeToNextPage}>Next</button>
 			</div>
 			<div className='movie-page'>

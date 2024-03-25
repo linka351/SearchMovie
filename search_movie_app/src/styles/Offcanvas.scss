@@ -1,9 +1,8 @@
-
 .fabar {
 	color: white;
 	font-size: 1.5rem;
 }
-.faxmark {
+.faxmark-offcanvas {
 	color: white;
 	font-size: 1.5rem;
 }
@@ -16,12 +15,15 @@
 	padding: 0 30px;
 	left: -100%;
 	transition: 1s;
+	z-index: 1;
 }
 
 .sidenav.active {
 	left: 0;
 }
 
-
-
-
+@media (max-width: 768px) {
+	.sidenav {
+		width: 150px;
+	}
+}

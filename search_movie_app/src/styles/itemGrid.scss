@@ -15,9 +15,13 @@
 		cursor: pointer;
 		margin: 10px;
 	}
+	button:hover {
+		background-color: lighten($color: black, $amount: 10);
+	}
 
 	p {
 		font-size: 1.5rem;
+		color: white;
 	}
 }
 .movie-page {
@@ -32,29 +36,25 @@
 	}
 
 	.image {
-		background-color: black;
+		background-image: linear-gradient(rgb(54, 53, 53), black);
 		box-sizing: border-box;
 		margin-top: 10px;
 		border-radius: 5%;
 		cursor: pointer;
 		padding: 10px;
 		width: 100%;
+		margin-bottom: 10px;
 
 		img {
 			border-radius: 5%;
 			display: block;
 			width: 100%;
-			height: 150px;
+			height: 200px;
 			object-fit: cover;
 		}
 
-		.icon {
-			color: white;
-			width: 100%;
-			height: 300px;
-		}
-
 		.movie-description {
+			justify-content: center;
 			color: white;
 			text-align: center;
 			font-size: 1.5rem;
