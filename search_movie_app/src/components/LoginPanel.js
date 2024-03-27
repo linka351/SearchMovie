@@ -1,30 +1,22 @@
-import { useState } from "react";
 import "../styles/LoginPanel.scss";
-
-const addInitial = () => {
-	const saved = localStorage.getItem("name");
-	const initialValue = JSON.parse(saved);
-	return initialValue || "";
-};
+import { useUserContext } from "./UserContext";
 
 function LoginPanel() {
-	const [name, setName] = useState(addInitial)
-	const addToLocalStorage = () => {
-		localStorage.setItem("name", JSON.stringify(name));
-	};
-
+	const { name, error, addToLocalStorage, lockButton, enterUser } =
+		useUserContext();
 	return (
 		<div className='panel-container'>
 			<div className='login-panel'>
 				<form>
 					<label>
-						Proszę podaj swoje imię
-						<input
-							type='text'
-							value={name}
-							onChange={e => setName(e.target.value)}
-						/>
-						<button onClick={addToLocalStorage}>Add</button>
+						<p>Podaj swoją nazwę aby się zalogować</p>
+						<input type='text' value={name} onChange={enterUser} />
+						<p className='error'>{error}</p>
+						{name === "" ? (
+							<button onClick={lockButton}>Add</button>
+						) : (
+							<button onClick={addToLocalStorage}>Add</button>
+						)}
 					</label>
 				</form>
 			</div>
