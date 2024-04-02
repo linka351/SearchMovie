@@ -4,7 +4,7 @@ import Main from "./components/Main";
 import Movies from "./components/Movies";
 import Profile from "./components/Profile";
 import Series from "./components/Series";
-import Search from "./components/Search";
+import SearchPage from "./components/SearchPage";
 import Layout from "./components/Layout";
 import Details from "./components/Details";
 import UserContextProvider from "./components/UserContext";
@@ -27,7 +27,7 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "/search",
-				element: <Search />,
+				element: <SearchPage />,
 			},
 			{
 				path: "/series",

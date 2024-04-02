@@ -34,7 +34,7 @@ function Navbar() {
 					<p>MovieSearch</p>
 				</Link>
 				<div className='right-side-navbar'>
-					<Link className='navbar-link' to={"/search"}>
+					<Link className='navbar-link' to={"/searchPage"}>
 						<FaMagnifyingGlass className='search' />
 					</Link>
 					<Link className='navbar-link' to={"/profile"}>
