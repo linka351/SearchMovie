@@ -1,18 +1,20 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { apiKey, IMG_URL } from "../imageApiKeys";
 import "../styles/details.scss";
 import { FaXmark } from "react-icons/fa6";
 import FavouritesIcon from "./FavouritesIcon";
 import { useFavouritesContext } from "../context/FavouritesContext";
+import { useNavigate } from "react-router-dom";
 
 function Details() {
-	const params = useParams();
+	const { id, type } = useParams();
+	const navigate = useNavigate();
 	const [singleElement, setSingleElement] = useState({});
 	const { addFavourite, favourites, removeFavourite } = useFavouritesContext();
 
 	useEffect(() => {
-		fetch(`https://api.themoviedb.org/3/movie/${params.id}?api_key=${apiKey}`)
+		fetch(`https://api.themoviedb.org/3/${type}/${id}?api_key=${apiKey}`)
 			.then(response => response.json())
 			.then(data => {
 				setSingleElement(data);
@@ -35,9 +37,7 @@ function Details() {
 
 	return (
 		<>
-			<Link to={singleElement.title ? "/movies" : "/series"}>
-				<FaXmark className='faxmark' />
-			</Link>
+			<FaXmark onClick={() => navigate(-1)} className='faxmark' />
 			<div className='details'>
 				<img
 					src={`${IMG_URL}${singleElement.backdrop_path}`}
