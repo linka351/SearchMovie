@@ -51,9 +51,7 @@ function App() {
 	return (
 		<UserContextProvider>
 			<FavouritesContextProvider>
-				<>
-					<RouterProvider router={router} />
-				</>
+				<RouterProvider router={router} />
 			</FavouritesContextProvider>
 		</UserContextProvider>
 	);
