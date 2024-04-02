@@ -1,7 +1,7 @@
 import ItemGrid from "./ItemGrid";
 import { useEffect, useState } from "react";
 import { apiKey } from "../imageApiKeys";
-import { dataType } from "../constance/data.constance";
+import { dataType } from "../utils/data.const";
 
 function Movies() {
 	const [data, setData] = useState(null);
