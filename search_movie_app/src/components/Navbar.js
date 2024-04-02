@@ -9,18 +9,24 @@ import { useUserContext } from "./UserContext";
 
 function Navbar() {
 	const [isOpen, setIsOpen] = useState(false);
+
 	const toggleMenu = () => {
 		setIsOpen(!isOpen);
 	};
 	const { userLogin } = useUserContext();
+
+	const closeMenu = () => {
+		setIsOpen(false);
+	};
+
 	return (
 		<>
 			<div className='navbar'>
 				<div className={"left-side-navbar"}>
 					{!isOpen ? (
-						<FaBars className='fabar' onClick={toggleMenu} />
+						<FaBars className='fabar-side-nav' onClick={toggleMenu} />
 					) : (
-						<FaXmark className='faxmark' onClick={toggleMenu} />
+						<FaXmark className='faxmark-side-nav' onClick={toggleMenu} />
 					)}
 
 					<Link className='navbar-link' to={"/movies"}>
@@ -42,7 +48,7 @@ function Navbar() {
 					</Link>
 				</div>
 			</div>
-			<Offcanvas showMenu={isOpen} />
+			<Offcanvas showMenu={isOpen} closeMenu={closeMenu} />
 			{userLogin === null && <LoginPanel />}
 		</>
 	);
