@@ -35,6 +35,9 @@ function Navbar() {
 					<Link className='navbar-link' to={"/series"}>
 						Series
 					</Link>
+					<Link className='navbar-link' to={"/favourites"}>
+						Favourites
+					</Link>
 				</div>
 				<Link className='navbar-link main' to={"/"}>
 					<p>MovieSearch</p>

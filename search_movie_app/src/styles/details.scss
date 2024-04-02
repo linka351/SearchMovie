@@ -1,3 +1,6 @@
+.active-icon {
+	color: red;
+}
 .faxmark {
 	margin-top: 2%;
 	position: absolute;
@@ -38,6 +41,13 @@
 	.smaller-details {
 		display: flex;
 		justify-content: space-between;
+
+		.smaller-details-right {
+			display: flex;
+			align-items: center;
+			width: 150px;
+			justify-content: space-around;
+		}
 
 		.production {
 			height: 3rem;

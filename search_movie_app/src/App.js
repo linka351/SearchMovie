@@ -6,8 +6,10 @@ import Profile from "./components/Profile";
 import Series from "./components/Series";
 import SearchPage from "./components/SearchPage";
 import Layout from "./components/Layout";
+import Favourites from "./components/Favourites";
 import Details from "./components/Details";
 import UserContextProvider from "./components/UserContext";
+import FavouritesContextProvider from "./context/FavouritesContext";
 
 const router = createBrowserRouter([
 	{
@@ -34,6 +36,10 @@ const router = createBrowserRouter([
 				element: <Series />,
 			},
 			{
+				path: "/favourites",
+				element: <Favourites />,
+			},
+			{
 				path: "/details/:id",
 				element: <Details />,
 			},
@@ -44,9 +50,9 @@ const router = createBrowserRouter([
 function App() {
 	return (
 		<UserContextProvider>
-			<div>
+			<FavouritesContextProvider>
 				<RouterProvider router={router} />
-			</div>
+			</FavouritesContextProvider>
 		</UserContextProvider>
 	);
 }
