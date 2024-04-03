@@ -3,6 +3,7 @@ import "../styles/slider.scss";
 import { MdOutlineNavigateNext } from "react-icons/md";
 import { MdNavigateBefore } from "react-icons/md";
 import ReactLoading from "react-loading";
+import { Link } from "react-router-dom";
 
 const apiKey = process.env.REACT_APP_IMAGE_API_KEY;
 const imageCount = 1;
@@ -57,11 +58,13 @@ function Slider() {
 			{data.slice(activeItemIndex, activeItemIndex + imageCount).map(item => {
 				return (
 					<>
-						<img alt={item.title} src={`${IMG_URL}${item?.backdrop_path}`} />
-						<div className='description-movie'>
-							<h2>{item.title || item.name}</h2>
-							<p>{item.overview}</p>
-						</div>
+						<Link to={`/details/${item.media_type}/${item.id}`}>
+							<img alt={item.title} src={`${IMG_URL}${item?.backdrop_path}`} />
+							<div className='description-movie'>
+								<h2>{item.title || item.name}</h2>
+								<p>{item.overview}</p>
+							</div>
+						</Link>
 					</>
 				);
 			})}

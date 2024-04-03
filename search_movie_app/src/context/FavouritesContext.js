@@ -29,9 +29,11 @@ const FavouritesContextProvider = ({ children }) => {
 		});
 	};
 
-	const removeFavourite = title => {
+	const removeFavourite = favElement => {
 		setFavourites(prev => {
-			const newState = prev.filter(item => item.title !== title);
+			const newState = prev.filter(
+				item => item.title !== favElement && item.name !== favElement
+			);
 			localStorage.setItem("favouriteArray", JSON.stringify(newState));
 			return newState;
 		});
