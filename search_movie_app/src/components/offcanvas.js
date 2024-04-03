@@ -20,6 +20,9 @@ function Offcanvas({ showMenu, closeMenu }) {
 			<Link className='link' to={"/series"}>
 				Series
 			</Link>
+			<Link className='link' to={"/favourites"}>
+				Favourites
+			</Link>
 		</div>
 	);
 }
