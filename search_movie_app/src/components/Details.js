@@ -7,6 +7,18 @@ import FavouritesIcon from "./FavouritesIcon";
 import { useFavouritesContext } from "../context/FavouritesContext";
 import { useNavigate } from "react-router-dom";
 
+const formatData = data => {
+	const releaseDate = data.release_date || data.first_air_date;
+	const title = data.title || data.name;
+	const formatedData = {
+		...data,
+		title,
+		release_date: releaseDate.slice(0, 4),
+	};
+
+	return formatedData;
+};
+
 function Details() {
 	const { id, type } = useParams();
 	const navigate = useNavigate();
@@ -17,7 +29,7 @@ function Details() {
 		fetch(`https://api.themoviedb.org/3/${type}/${id}?api_key=${apiKey}`)
 			.then(response => response.json())
 			.then(data => {
-				setSingleElement(data);
+				setSingleElement(formatData(data));
 			});
 	}, []);
 
@@ -32,6 +44,8 @@ function Details() {
 		addFavourite({
 			title: singleElement.title,
 			backdrop_path: singleElement.backdrop_path,
+			type: type,
+			id: id,
 		});
 	};
 
@@ -50,9 +64,7 @@ function Details() {
 						<p className='production'>
 							Production:
 							<span className='date'>
-								{singleElement.release_date
-									? singleElement.release_date.slice(0, 4)
-									: "N/A"}
+								{singleElement ? singleElement.release_date : "N/A"}
 							</span>
 						</p>
 						<div className='smaller-details-right'>
