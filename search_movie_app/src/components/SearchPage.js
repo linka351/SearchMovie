@@ -6,7 +6,7 @@ import ItemGrid from "./ItemGrid";
 
 function SearchPage() {
 	const [value, setValue] = useState("");
-	const [data, setData] = useState([]);
+	const [data, setData] = useState(null);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(null);
 	const [selectedType, setSelectedType] = useState("movie");
@@ -27,7 +27,7 @@ function SearchPage() {
 	useEffect(() => {
 		if (!value) {
 			setTotalPages(null);
-			setData([]);
+			setData({ items: [], type: selectedType });
 
 			return;
 		}
@@ -39,7 +39,7 @@ function SearchPage() {
 				.then(response => response.json())
 				.then(data => {
 					setTotalPages(data.total_pages);
-					setData(data.results);
+					setData({ items: data.results, type: selectedType });
 				});
 		}, 300);
 
@@ -64,7 +64,7 @@ function SearchPage() {
 				</button>
 			</div>
 			<SearchInput onChange={search} value={value} />
-			{data.length === 0 && value.length > 0 && "Brak wpisanego elementu"}
+			{value.length === "" && "Brak wpisanego elementu"}
 			<ItemGrid
 				data={data}
 				currentPage={currentPage}
