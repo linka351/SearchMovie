@@ -1,26 +1,29 @@
 import { Link, useLocation } from "react-router-dom";
-import "../styles/Offcanvas.scss";
 import { useEffect } from "react";
+
+import { route } from "../utils/routes";
+
+import "../styles/Offcanvas.scss";
 
 function Offcanvas({ showMenu, closeMenu }) {
 	const { pathname } = useLocation();
 
 	useEffect(() => {
 		closeMenu();
-	}, [pathname]);
+	}, [closeMenu, pathname]);
 
 	return (
 		<div className={`sidenav ${showMenu ? "active" : ""}`}>
-			<Link className='link' to={"/"}>
+			<Link className='link' to={route.main}>
 				Main Page
 			</Link>
-			<Link className='link' to={"/movies"}>
+			<Link className='link' to={route.movies}>
 				Movies
 			</Link>
-			<Link className='link' to={"/series"}>
+			<Link className='link' to={route.series}>
 				Series
 			</Link>
-			<Link className='link' to={"/favourites"}>
+			<Link className='link' to={route.favourites}>
 				Favourites
 			</Link>
 		</div>

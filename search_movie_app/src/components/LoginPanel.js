@@ -1,22 +1,33 @@
+import { useState } from "react";
+
+import { useUserContext } from "../context/UserContext";
+
 import "../styles/LoginPanel.scss";
-import { useUserContext } from "./UserContext";
 
 function LoginPanel() {
-	const { name, error, addToLocalStorage, lockButton, enterUser } =
-		useUserContext();
+	const { addToLocalStorage } = useUserContext();
+	const [value, setValue] = useState('');
+	const [error, setError] = useState('');
+
+	const handleSubmit = e => {
+		e.preventDefault();
+		if (value === "") {
+			setError("Proszę podać nazwę użytkownika!");
+			return;
+		}
+		addToLocalStorage(value);
+		setError("");
+	};
+
 	return (
 		<div className='panel-container'>
 			<div className='login-panel'>
-				<form>
+				<form onSubmit={handleSubmit}>
 					<label>
 						<p>Podaj swoją nazwę aby się zalogować</p>
-						<input type='text' value={name} onChange={enterUser} />
+						<input type='text' value={value} onChange={e=>setValue(e.target.value) } />
 						<p className='error'>{error}</p>
-						{name === "" ? (
-							<button onClick={lockButton}>Add</button>
-						) : (
-							<button onClick={addToLocalStorage}>Add</button>
-						)}
+							<button>Add</button>
 					</label>
 				</form>
 			</div>

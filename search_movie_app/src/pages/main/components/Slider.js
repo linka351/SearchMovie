@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import "../styles/slider.scss";
 import { MdOutlineNavigateNext } from "react-icons/md";
 import { MdNavigateBefore } from "react-icons/md";
 import ReactLoading from "react-loading";
 import { Link } from "react-router-dom";
+
+import "../../../styles/slider.scss";
 
 const apiKey = process.env.REACT_APP_IMAGE_API_KEY;
 const imageCount = 1;

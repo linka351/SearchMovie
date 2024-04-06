@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { apiKey, IMG_URL } from "../../imageApiKeys";
-import "../styles/details.scss";
+import { apiKey, IMG_URL } from "../../api/api";
 import { FaXmark } from "react-icons/fa6";
 import FavouritesIcon from "./components/FavouritesIcon";
 import { useFavouritesContext } from "../../context/FavouritesContext";
 import { useNavigate } from "react-router-dom";
+
+import "./details.scss";
 
 const formatData = data => {
 	const releaseDate = data.release_date || data.first_air_date;

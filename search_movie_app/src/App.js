@@ -1,46 +1,51 @@
-import "./App.scss";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+
+import UserContextProvider from "./context/UserContext";
+import FavouritesContextProvider from "./context/FavouritesContext";
+
+import Details from "./pages/details/Details";
+import Favourites from "./pages/favourites/Favourites";
 import Main from "./pages/main/Main";
 import Movies from "./pages/movies/Movies";
 import Profile from "./pages/profile/Profile";
+import Layout from "./components/Layout";
 import Series from "./pages/series/Series";
 import SearchPage from "./pages/searchPage/SearchPage";
-import Layout from "./components/Layout";
-import Favourites from "./pages/favourites/Favourites";
-import Details from "./pages/details/Details";
-import UserContextProvider from "./components/UserContext";
-import FavouritesContextProvider from "./context/FavouritesContext";
+
+import { route } from "./utils/routes";
+
+import "./App.scss";
 
 const router = createBrowserRouter([
 	{
 		element: <Layout />,
 		children: [
 			{
-				path: "/",
+				path: route.main,
 				element: <Main />,
 			},
 			{
-				path: "/movies",
+				path: route.movies,
 				element: <Movies />,
 			},
 			{
-				path: "/profile",
+				path: route.profile,
 				element: <Profile />,
 			},
 			{
-				path: "/search",
+				path: route.search,
 				element: <SearchPage />,
 			},
 			{
-				path: "/series",
+				path: route.series,
 				element: <Series />,
 			},
 			{
-				path: "/favourites",
+				path: route.favourites,
 				element: <Favourites />,
 			},
 			{
-				path: "/details/:type/:id",
+				path: route.details + "/:type/:id",
 				element: <Details />,
 			},
 		],

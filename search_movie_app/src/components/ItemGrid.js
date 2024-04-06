@@ -1,8 +1,11 @@
-import "../styles/itemGrid.scss";
-import { IMG_URL } from "../imageApiKeys";
-import noImage from "../images/noImage.jpg";
-import { Link } from "react-router-dom";
 import ReactLoading from "react-loading";
+import { Link } from "react-router-dom";
+
+import { IMG_URL } from "../api/api";
+import { route } from "../utils/routes";
+
+import noImage from "../images/noImage.jpg";
+import "../styles/itemGrid.scss";
 
 function ItemGrid({ data, currentPage, totalPages, changePage }) {
 	if (!data) {
@@ -22,41 +25,32 @@ function ItemGrid({ data, currentPage, totalPages, changePage }) {
 	};
 
 	const { items, type } = data;
+	const pageCounter = totalPages ? "" : <p>{`${currentPage}/${totalPages}`}</p>
 
 	return (
 		<>
 			<div className='buttons-direction'>
 				<button onClick={takeToPreviousPage}>Prev</button>
-				{totalPages === null ? "" : <p>{`${currentPage}/${totalPages}`}</p>}
+					{pageCounter}
 				<button onClick={takeToNextPage}>Next</button>
 			</div>
 			<div className='movie-page'>
-				{items.map(item => {
-					return (
-						<>
-							<Link className='link' to={`/details/${type}/${item.id}`}>
-								{item.backdrop_path === null ? (
+				{items?.map(item => {
+					const imgSrc = item.backdrop_path ? `${IMG_URL}${item.backdrop_path}` : noImage;
+					const label = item.title || item.name;
+					return(
+							<Link className='link' to={route.details + `/${type}/${item.id}`}>
 									<div className='image'>
-										<img src={noImage} alt={item.title || item.name} />
+										<img src={imgSrc} alt={label} />
 										<div className='movie-description'>
-											<p>{item.title || item.name}</p>
+											<p>{label}</p>
 										</div>
 									</div>
-								) : (
-									<div className='image'>
-										<img
-											src={`${IMG_URL}${item.backdrop_path}`}
-											alt={item.title || item.name}
-										/>
-										<div className='movie-description'>
-											<p>{item.title || item.name}</p>
-										</div>
-									</div>
-								)}
 							</Link>
-						</>
-					);
-				})}
+					)
+				}
+							
+					)}
 			</div>
 		</>
 	);

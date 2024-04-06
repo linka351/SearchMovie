@@ -1,23 +1,27 @@
+import { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaBars, FaMagnifyingGlass, FaXmark } from "react-icons/fa6";
-import { useState } from "react";
-import Offcanvas from "./Offcanvas";
-import "../styles/Navbar.scss";
-import "../styles/Offcanvas.scss";
-import LoginPanel from "./LoginPanel";
-import { useUserContext } from "./UserContext";
+
+import LoginPanel from "../LoginPanel";
+import Offcanvas from "../Offcanvas";
+
+import { useUserContext } from "../../context/UserContext";
+import { route } from "../../utils/routes";
+
+import "./navbar.scss";
 
 function Navbar() {
+	const { userLogin } = useUserContext();
+
 	const [isOpen, setIsOpen] = useState(false);
 
 	const toggleMenu = () => {
 		setIsOpen(!isOpen);
 	};
-	const { userLogin } = useUserContext();
 
-	const closeMenu = () => {
+	const closeMenu = useCallback( () => {
 		setIsOpen(false);
-	};
+	}, []);
 
 	return (
 		<>
@@ -29,30 +33,30 @@ function Navbar() {
 						<FaXmark className='faxmark-side-nav' onClick={toggleMenu} />
 					)}
 
-					<Link className='navbar-link' to={"/movies"}>
+					<Link className='navbar-link' to={route.movies}>
 						Movies
 					</Link>
-					<Link className='navbar-link' to={"/series"}>
+					<Link className='navbar-link' to={route.series}>
 						Series
 					</Link>
-					<Link className='navbar-link' to={"/favourites"}>
+					<Link className='navbar-link' to={route.favourites}>
 						Favourites
 					</Link>
 				</div>
-				<Link className='navbar-link main' to={"/"}>
+				<Link className='navbar-link main' to={route.main}>
 					<p>MovieSearch</p>
 				</Link>
 				<div className='right-side-navbar'>
-					<Link className='navbar-link' to={"/search"}>
+					<Link className='navbar-link' to={route.search}>
 						<FaMagnifyingGlass className='search' />
 					</Link>
-					<Link className='navbar-link' to={"/profile"}>
+					<Link className='navbar-link' to={route.profile}>
 						{userLogin}
 					</Link>
 				</div>
 			</div>
 			<Offcanvas showMenu={isOpen} closeMenu={closeMenu} />
-			{userLogin === null && <LoginPanel />}
+			{userLogin && <LoginPanel />}
 		</>
 	);
 }

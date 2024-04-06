@@ -1,6 +1,6 @@
 import ItemGrid from "../../components/ItemGrid";
 import { useEffect, useState } from "react";
-import { apiKey } from "../../imageApiKeys";
+import { apiKey } from "../../api/api";
 import { dataType } from "../../utils/data.const";
 
 function Series() {

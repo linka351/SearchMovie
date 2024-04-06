@@ -1,8 +1,8 @@
-import "../styles/searchPage.scss";
 import SearchInput from "./components/SearchInput";
 import { useState, useEffect } from "react";
-import { apiKey } from "../../imageApiKeys";
+import { apiKey } from "../../api/api";
 import ItemGrid from "../../components/ItemGrid";
+import "../../styles/searchPage.scss";
 
 function SearchPage() {
 	const [value, setValue] = useState("");

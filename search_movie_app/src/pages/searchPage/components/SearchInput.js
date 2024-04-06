@@ -1,4 +1,4 @@
-import "../styles/searchInput.scss";
+import "../../../styles/searchInput.scss";
 
 function SearchInput({ onChange, value }) {
 	return (
