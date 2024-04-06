@@ -17,8 +17,8 @@
 	left: -100%;
 	transition: 1s;
 	z-index: 1;
-	background-color: black;
-
+	position: fixed;
+	background-color: rgb(10, 10, 10);
 	.link {
 		display: flex;
 		font-size: 1.5rem;
@@ -40,4 +40,10 @@
 
 .sidenav.active {
 	left: 0;
+}
+
+@media (max-width: 768px) {
+	.sidenav {
+		width: 150px;
+	}
 }

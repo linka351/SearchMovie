@@ -25,18 +25,16 @@ function ItemGrid({ data, currentPage, totalPages, changePage }) {
 
 	return (
 		<>
-			{totalPages > 1 && (
-				<div className='buttons-direction'>
-					<button onClick={takeToPreviousPage}>Prev</button>
-					<p>{`Page ${currentPage}/${totalPages}`}</p>
-					<button onClick={takeToNextPage}>Next</button>
-				</div>
-			)}
+			<div className='buttons-direction'>
+				<button onClick={takeToPreviousPage}>Prev</button>
+				{totalPages === null ? "" : <p>{`${currentPage}/${totalPages}`}</p>}
+				<button onClick={takeToNextPage}>Next</button>
+			</div>
 			<div className='movie-page'>
 				{items.map(item => {
 					return (
 						<>
-							<Link to={`/details/${type}/${item.id}`}>
+							<Link className='link' to={`/details/${type}/${item.id}`}>
 								{item.backdrop_path === null ? (
 									<div className='image'>
 										<img src={noImage} alt={item.title || item.name} />
