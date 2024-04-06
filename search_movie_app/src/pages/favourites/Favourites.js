@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { IMG_URL } from "../imageApiKeys";
+import { IMG_URL } from "../../imageApiKeys";
 
 function Favourites() {
 	const retrievedObject = JSON.parse(localStorage.getItem("favouriteArray"));

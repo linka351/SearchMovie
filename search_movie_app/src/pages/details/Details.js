@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { apiKey, IMG_URL } from "../imageApiKeys";
+import { apiKey, IMG_URL } from "../../imageApiKeys";
 import "../styles/details.scss";
 import { FaXmark } from "react-icons/fa6";
-import FavouritesIcon from "./FavouritesIcon";
-import { useFavouritesContext } from "../context/FavouritesContext";
+import FavouritesIcon from "./components/FavouritesIcon";
+import { useFavouritesContext } from "../../context/FavouritesContext";
 import { useNavigate } from "react-router-dom";
 
 const formatData = data => {

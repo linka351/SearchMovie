@@ -1,13 +1,13 @@
 import "./App.scss";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Main from "./components/Main";
-import Movies from "./components/Movies";
-import Profile from "./components/Profile";
-import Series from "./components/Series";
-import SearchPage from "./components/SearchPage";
+import Main from "./pages/main/Main";
+import Movies from "./pages/movies/Movies";
+import Profile from "./pages/profile/Profile";
+import Series from "./pages/series/Series";
+import SearchPage from "./pages/searchPage/SearchPage";
 import Layout from "./components/Layout";
-import Favourites from "./components/Favourites";
-import Details from "./components/Details";
+import Favourites from "./pages/favourites/Favourites";
+import Details from "./pages/details/Details";
 import UserContextProvider from "./components/UserContext";
 import FavouritesContextProvider from "./context/FavouritesContext";
 
