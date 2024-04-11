@@ -6,8 +6,19 @@ import { route } from "../utils/routes";
 
 import noImage from "../images/noImage.jpg";
 import "../styles/itemGrid.scss";
+import { useEffect, useState } from "react";
+import useDebounce from "../hooks/useDebounce";
 
-function ItemGrid({ data, currentPage, totalPages, changePage }) {
+function ItemGrid({ data, initialPage, totalPages, changePage }) {
+	const [currentPage, setCurrentPage] = useState(initialPage)
+
+	const updatePage = ()=>{
+		changePage(currentPage)
+	}
+
+	useDebounce({callback: updatePage, delay: 500, dependecies: [currentPage]})
+
+
 	if (!data) {
 		return (
 			<ReactLoading type='spin' height={"20%"} color='black' width={"20%"} />
@@ -16,22 +27,21 @@ function ItemGrid({ data, currentPage, totalPages, changePage }) {
 
 	const takeToNextPage = () => {
 		if (currentPage === totalPages) return;
-		changePage(prev => prev + 1);
+		setCurrentPage(prev => prev + 1);
 	};
 
 	const takeToPreviousPage = () => {
 		if (currentPage === 1) return;
-		changePage(prev => prev - 1);
+		setCurrentPage(prev => prev - 1);
 	};
+
 
 	const { items, type } = data;
 
 	return (
 		<>
 			<div className='buttons-direction'>
-				{totalPages ? (
-					""
-				) : (
+				{totalPages && (
 					<>
 						<button onClick={takeToPreviousPage}>Prev</button>
 						<p>{`${currentPage}/${totalPages}`}</p>
@@ -43,7 +53,7 @@ function ItemGrid({ data, currentPage, totalPages, changePage }) {
 				{items?.map(item => {
 					return (
 						<Link className='link' to={route.details + `/${type}/${item.id}`}>
-							{item.backdrop_path ? (
+							{!item.backdrop_path ? (
 								<div className='image'>
 									<img src={noImage} alt={item.title || item.name} />
 									<div className='movie-description'>

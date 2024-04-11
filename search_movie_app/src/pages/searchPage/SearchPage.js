@@ -3,6 +3,7 @@ import SearchInput from "./components/SearchInput";
 import { useState, useEffect } from "react";
 import { apiKey } from "../../api/api";
 import ItemGrid from "../../components/ItemGrid";
+import useDebounce from "../../hooks/useDebounce";
 
 function SearchPage() {
 	const [value, setValue] = useState("");
@@ -24,7 +25,7 @@ function SearchPage() {
 		setValue(e.target.value);
 	};
 
-	useEffect(() => {
+	const fetchPage = () => {
 		if (!value) {
 			setTotalPages(null);
 			setData({ items: [], type: selectedType });
@@ -32,21 +33,17 @@ function SearchPage() {
 			return;
 		}
 
-		const timeoutId = setTimeout(() => {
-			fetch(
-				`https://api.themoviedb.org/3/search/${selectedType}?api_key=${apiKey}&include_adult=false&language=en-US&page=${currentPage}&query=${value}`
-			)
-				.then(response => response.json())
-				.then(data => {
-					setTotalPages(data.total_pages);
-					setData({ items: data.results, type: selectedType });
-				});
-		}, 300);
+		fetch(
+			`https://api.themoviedb.org/3/search/${selectedType}?api_key=${apiKey}&include_adult=false&language=en-US&page=${currentPage}&query=${value}`
+		)
+			.then(response => response.json())
+			.then(data => {
+				setTotalPages(data.total_pages);
+				setData({ items: data.results, type: selectedType });
+			});
+	}
 
-		return () => {
-			clearTimeout(timeoutId);
-		};
-	}, [currentPage, selectedType, value]);
+	useDebounce({callback: fetchPage, delay: 500, dependecies: [currentPage, selectedType, value]})
 
 	return (
 		<>
@@ -66,7 +63,7 @@ function SearchPage() {
 			<SearchInput onChange={search} value={value} />
 			<ItemGrid
 				data={data}
-				currentPage={currentPage}
+				initialPage={currentPage}
 				totalPages={totalPages}
 				changePage={changePage}
 			/>

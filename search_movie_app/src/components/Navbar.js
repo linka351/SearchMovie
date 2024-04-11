@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { FaBars, FaMagnifyingGlass, FaXmark } from "react-icons/fa6";
 import { useState } from "react";
-import Offcanvas from "./Offcanvas";
+import Offcanvas from "./offcanvas";
 import "../styles/Navbar.scss";
 import "../styles/Offcanvas.scss";
 import LoginPanel from "./LoginPanel";

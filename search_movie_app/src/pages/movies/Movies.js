@@ -25,7 +25,7 @@ function Movies() {
 	return (
 		<ItemGrid
 			data={data}
-			currentPage={currentPage}
+			initialPage={currentPage}
 			totalPages={totalPages}
 			changePage={changePage}
 		/>
