@@ -1,8 +1,8 @@
-import "../styles/searchPage.scss";
-import SearchInput from "./SearchInput";
+import "../../styles/searchPage.scss";
+import SearchInput from "./components/SearchInput";
 import { useState, useEffect } from "react";
-import { apiKey } from "../imageApiKeys";
-import ItemGrid from "./ItemGrid";
+import { apiKey } from "../../api/api";
+import ItemGrid from "../../components/ItemGrid";
 
 function SearchPage() {
 	const [value, setValue] = useState("");
@@ -64,7 +64,6 @@ function SearchPage() {
 				</button>
 			</div>
 			<SearchInput onChange={search} value={value} />
-			{value.length === "" && "Brak wpisanego elementu"}
 			<ItemGrid
 				data={data}
 				currentPage={currentPage}

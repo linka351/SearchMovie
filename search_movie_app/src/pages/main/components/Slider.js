@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import "../styles/slider.scss";
+import "../../../styles/slider.scss";
 import { MdOutlineNavigateNext } from "react-icons/md";
 import { MdNavigateBefore } from "react-icons/md";
 import ReactLoading from "react-loading";
 import { Link } from "react-router-dom";
+import "../../../styles/loader.scss";
 
 const apiKey = process.env.REACT_APP_IMAGE_API_KEY;
 const imageCount = 1;
@@ -49,7 +50,13 @@ function Slider() {
 
 	if (data.length === 0) {
 		return (
-			<ReactLoading type='spin' height={"20%"} color='black' width={"20%"} />
+			<ReactLoading
+				className='loader'
+				type='spin'
+				height={"20%"}
+				color='white'
+				width={"20%"}
+			/>
 		);
 	}
 

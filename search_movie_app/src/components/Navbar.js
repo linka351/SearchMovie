@@ -5,7 +5,7 @@ import Offcanvas from "./Offcanvas";
 import "../styles/Navbar.scss";
 import "../styles/Offcanvas.scss";
 import LoginPanel from "./LoginPanel";
-import { useUserContext } from "./UserContext";
+import { useUserContext } from "../context/UserContext";
 
 function Navbar() {
 	const [isOpen, setIsOpen] = useState(false);
@@ -46,9 +46,7 @@ function Navbar() {
 					<Link className='navbar-link' to={"/search"}>
 						<FaMagnifyingGlass className='search' />
 					</Link>
-					<Link className='navbar-link' to={"/profile"}>
-						{userLogin}
-					</Link>
+					<p className='user-name'>{userLogin}</p>
 				</div>
 			</div>
 			<Offcanvas showMenu={isOpen} closeMenu={closeMenu} />

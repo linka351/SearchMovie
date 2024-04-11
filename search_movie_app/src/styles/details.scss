@@ -2,13 +2,14 @@
 	color: red;
 }
 .faxmark {
-	margin-top: 2%;
 	position: absolute;
 	height: 3rem;
 	width: 5rem;
 	margin-left: 70%;
 	cursor: pointer;
 	color: white;
+	position: absolute;
+	top: 80px;
 }
 .details {
 	margin-top: 5%;
@@ -16,7 +17,7 @@
 	text-align: center;
 	margin-bottom: 5px;
 	width: 40%;
-	background-color: black;
+	background-image: linear-gradient(rgb(54, 53, 53), black);
 	color: white;
 	border-radius: 5%;
 
@@ -73,5 +74,30 @@
 			font-size: 1.2rem;
 			border-radius: 50%;
 		}
+	}
+}
+
+@media (max-width: 576px) {
+	.faxmark {
+		margin-left: 90%;
+		top: 50px;
+		height: 1.7rem;
+		width: 2.5rem;
+	}
+	.details {
+		margin-left: 5%;
+		width: 90%;
+		border-radius: 3%;
+	}
+}
+
+@media (min-width: 576px) and (max-width: 1200px) {
+	.faxmark {
+		top: 50px;
+		margin-left: 85%;
+	}
+	.details {
+		width: 80%;
+		margin-left: 10%;
 	}
 }

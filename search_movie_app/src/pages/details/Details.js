@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { apiKey, IMG_URL } from "../imageApiKeys";
-import "../styles/details.scss";
+import { apiKey, IMG_URL } from "../../api/api";
+import "../../styles/details.scss";
 import { FaXmark } from "react-icons/fa6";
-import FavouritesIcon from "./FavouritesIcon";
-import { useFavouritesContext } from "../context/FavouritesContext";
+import FavouritesIcon from "./components/FavouritesIcon";
+import { useFavouritesContext } from "../../context/FavouritesContext";
 import { useNavigate } from "react-router-dom";
+import noImage from "../../images/noImage.jpg";
 
 const formatData = data => {
 	const releaseDate = data.release_date || data.first_air_date;
@@ -33,7 +34,9 @@ function Details() {
 			});
 	}, []);
 
-	const isFavourite = favourites.some(fav => fav.title === singleElement.title);
+	const isFavourite = favourites.some(
+		fav => Number(fav.id) === singleElement.id
+	);
 
 	const handleFavouriteClick = () => {
 		if (isFavourite) {
@@ -53,10 +56,14 @@ function Details() {
 		<>
 			<FaXmark onClick={() => navigate(-1)} className='faxmark' />
 			<div className='details'>
-				<img
-					src={`${IMG_URL}${singleElement.backdrop_path}`}
-					alt={`${singleElement.title}`}
-				/>
+				{singleElement.backdrop_path === null ? (
+					<img src={noImage} alt={`${singleElement.title}`} />
+				) : (
+					<img
+						src={`${IMG_URL}${singleElement.backdrop_path}`}
+						alt={`${singleElement.title}`}
+					/>
+				)}
 				<div className='details-element'>
 					<p className='title'>{singleElement.title}</p>
 					<p className='overview'>{singleElement.overview}</p>

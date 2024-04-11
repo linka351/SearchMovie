@@ -1,9 +1,9 @@
-import ItemGrid from "./ItemGrid";
+import ItemGrid from "../../components/ItemGrid";
 import { useEffect, useState } from "react";
-import { apiKey } from "../imageApiKeys";
-import { dataType } from "../utils/data.const";
+import { apiKey } from "../../api/api";
+import { dataType } from "../../utils/data.const";
 
-function Series() {
+function Movies() {
 	const [data, setData] = useState(null);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(null);
@@ -14,12 +14,12 @@ function Series() {
 
 	useEffect(() => {
 		fetch(
-			`https://api.themoviedb.org/3/tv/top_rated?api_key=${apiKey}&language=en-US&page=${currentPage}?`
+			`https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=en-US&page=${currentPage}?`
 		)
 			.then(response => response.json())
 			.then(data => {
 				setTotalPages(data.total_pages);
-				setData({ items: data.results, type: dataType.tv });
+				setData({ items: data.results, type: dataType.movie });
 			});
 	}, [currentPage]);
 	return (
@@ -32,4 +32,4 @@ function Series() {
 	);
 }
 
-export default Series;
+export default Movies;
