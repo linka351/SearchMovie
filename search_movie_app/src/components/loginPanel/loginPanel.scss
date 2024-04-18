@@ -1,5 +1,7 @@
+@import "../../styles/global/globalVariables.scss";
+
 .panel-container {
-	height: 100%;
+	height: 80%;
 	width: 100%;
 	display: flex;
 	align-items: center;
@@ -35,17 +37,31 @@
 				justify-content: center;
 
 				p {
-					font-size: 30px;
-					margin-bottom: 2%;
+					font-size: 1.2rem;
+					margin-bottom: 5%;
+					text-align: center;
+
+					@media (min-width: $tablet-media) {
+						font-size: 1.5rem;
+					}
+
+					@media (min-width: $desktop-media) {
+						font-size: 2rem;
+						margin-bottom: 2%;
+					}
 				}
 
 				input {
-					width: 50%;
+					width: 80%;
 					font-size: 1.5rem;
 					border: none;
 					outline: none;
 					border-radius: 5px;
 					text-align: center;
+
+					@media (min-width: $tablet-media) {
+						width: 70%;
+					}
 				}
 
 				.error {
@@ -59,30 +75,15 @@
 					border: none;
 					cursor: pointer;
 					font-size: 1.5rem;
-					width: 20%;
+					width: 80%;
 					border-radius: 5px;
-				}
-			}
-		}
-	}
-}
 
-@media (max-width: 768px) {
-	.panel-container {
-		.login-panel {
-			form {
-				label {
-					input {
-						margin-top: 10px;
+					@media (min-width: $tablet-media) {
+						width: 50%;
 					}
-					p {
-						font-size: 1.4rem;
-					}
-					.error {
-						font-size: 1rem;
-					}
-					button {
-						font-size: 1rem;
+
+					@media (min-width: $desktop-media) {
+						width: 30%;
 					}
 				}
 			}

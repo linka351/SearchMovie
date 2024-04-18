@@ -1,9 +1,9 @@
 import { Outlet } from "react-router-dom";
 
-import Footer from "./Footer";
-import Navbar from "./Navbar";
+import Footer from "../footer/Footer";
+import Navbar from "../navbar/Navbar";
 
-import "../styles/layout.scss";
+import "./layout.scss";
 
 function Layout() {
 	return (

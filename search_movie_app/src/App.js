@@ -7,7 +7,7 @@ import Details from "./pages/details/Details";
 import Favourites from "./pages/favourites/Favourites";
 import Main from "./pages/main/Main";
 import Movies from "./pages/movies/Movies";
-import Layout from "./components/Layout";
+import Layout from "./components/layout/Layout";
 import Series from "./pages/series/Series";
 import SearchPage from "./pages/searchPage/SearchPage";
 

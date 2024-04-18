@@ -1,0 +1,83 @@
+import ReactLoading from "react-loading";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+
+import { IMG_URL } from "../../api/api";
+import { route } from "../../utils/routes";
+
+import noImage from "../../images/noImage.jpg";
+import useDebounce from "../../hooks/useDebounce";
+import "./itemGrid.scss";
+import "../../styles/loader.scss";
+
+function ItemGrid({ data, initialPage, totalPages, changePage }) {
+	const [currentPage, setCurrentPage] = useState(initialPage);
+
+	const updatePage = () => {
+		changePage(currentPage);
+	};
+
+	useDebounce({
+		callback: updatePage,
+		delay: 500,
+		dependecies: [currentPage],
+	});
+	if (!data) {
+		return (
+			<ReactLoading
+				className='loader'
+				type='spin'
+				height={"15%"}
+				color='white'
+				width={"15%"}
+			/>
+		);
+	}
+
+	const takeToNextPage = () => {
+		if (currentPage === totalPages) return;
+		setCurrentPage(prev => prev + 1);
+	};
+
+	const takeToPreviousPage = () => {
+		if (currentPage === 1) return;
+		setCurrentPage(prev => prev - 1);
+	};
+
+	const { items, type } = data;
+	const pageCounter = <p>{`${currentPage}/${totalPages}`}</p>;
+
+	return (
+		<>
+			<div className='buttons-direction'>
+				{totalPages && (
+					<>
+						<button onClick={takeToPreviousPage}>Prev</button>
+						<p>{pageCounter}</p>
+						<button onClick={takeToNextPage}>Next</button>
+					</>
+				)}
+			</div>
+			<div className='movie-page'>
+				{items?.map(item => {
+					const imageSrc = item.backdrop_path
+						? `${IMG_URL}${item.backdrop_path}`
+						: noImage;
+					const label = item.title || item.name;
+					return (
+						<Link className='link' to={route.details + `/${type}/${item.id}`}>
+							<div className='image'>
+								<img src={imageSrc} alt={label} />
+								<div className='movie-description'>
+									<p>{label}</p>
+								</div>
+							</div>
+						</Link>
+					);
+				})}
+			</div>
+		</>
+	);
+}
+
+export default ItemGrid;

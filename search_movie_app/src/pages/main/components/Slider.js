@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import "../../../styles/slider.scss";
-import { MdOutlineNavigateNext } from "react-icons/md";
-import { MdNavigateBefore } from "react-icons/md";
+import { MdOutlineNavigateNext, MdNavigateBefore } from "react-icons/md";
 import ReactLoading from "react-loading";
 import { Link } from "react-router-dom";
+
+import { api, endpoints, apiKey } from "../../../api/api";
+
+import "./slider.scss";
 import "../../../styles/loader.scss";
 
-const apiKey = process.env.REACT_APP_IMAGE_API_KEY;
 const imageCount = 1;
 const IMG_URL = "https://image.tmdb.org/t/p/original/";
 
@@ -23,8 +24,9 @@ function Slider() {
 		setActiveItemIndex(prev => prev - 1);
 	};
 	useEffect(() => {
-		fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=${apiKey}`)
-			.then(response => response.json())
+		api
+			.get(endpoints.slider + `/all/week?api_key=${apiKey}`)
+
 			.then(data => {
 				setData(data.results);
 			});

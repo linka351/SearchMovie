@@ -1,3 +1,5 @@
+@import "../../../styles/global/globalVariables.scss";
+
 .slider {
 	position: relative;
 	display: flex;
@@ -10,11 +12,24 @@
 	}
 
 	.description-movie {
+		text-align: center;
 		position: absolute;
-		background-color: rgb(10, 10, 10, 0.3);
+		background-color: rgb(10, 10, 10, 0.2);
 		color: white;
 		bottom: 0%;
 		width: 100vw;
+
+		@media (min-width: $tablet-media) {
+			background-color: rgb(10, 10, 10, 0.3);
+		}
+
+		p {
+			font-size: 12px;
+
+			@media (min-width: $tablet-media) {
+				font-size: 1rem;
+			}
+		}
 	}
 
 	.btn {
@@ -39,17 +54,5 @@
 	}
 	.btn-left {
 		left: 0;
-	}
-}
-
-@media (max-width: 768px) {
-	.slider {
-		.description-movie {
-			text-align: center;
-			background-color: rgb(10, 10, 10, 0.2);
-			p {
-				font-size: 12px;
-			}
-		}
 	}
 }

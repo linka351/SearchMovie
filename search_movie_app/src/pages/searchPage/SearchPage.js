@@ -1,8 +1,12 @@
-import "../../styles/searchPage.scss";
+import { useState } from "react";
+
+import ItemGrid from "../../components/itemGrid/ItemGrid";
 import SearchInput from "./components/SearchInput";
-import { useState, useEffect } from "react";
-import { apiKey } from "../../api/api";
-import ItemGrid from "../../components/ItemGrid";
+
+import { api, apiKey, endpoints } from "../../api/api";
+import useDebounce from "../../hooks/useDebounce";
+
+import "./searchPage.scss";
 
 function SearchPage() {
 	const [value, setValue] = useState("");
@@ -24,7 +28,10 @@ function SearchPage() {
 		setValue(e.target.value);
 	};
 
-	useEffect(() => {
+	const selectedTypeMovies = `link ${selectedType === "movie" && "active"}`;
+	const selectedTypeTv = `link ${selectedType === "tv" && "active"}`;
+
+	const fetchPage = () => {
 		if (!value) {
 			setTotalPages(null);
 			setData({ items: [], type: selectedType });
@@ -32,41 +39,41 @@ function SearchPage() {
 			return;
 		}
 
-		const timeoutId = setTimeout(() => {
-			fetch(
-				`https://api.themoviedb.org/3/search/${selectedType}?api_key=${apiKey}&include_adult=false&language=en-US&page=${currentPage}&query=${value}`
-			)
-				.then(response => response.json())
-				.then(data => {
-					setTotalPages(data.total_pages);
-					setData({ items: data.results, type: selectedType });
-				});
-		}, 300);
+		api
 
-		return () => {
-			clearTimeout(timeoutId);
-		};
-	}, [currentPage, selectedType, value]);
+			.get(
+				endpoints.searchPage +
+					`/${selectedType}?api_key=${apiKey}&include_adult=false&language=en-US&page=${currentPage}&query=${value}`
+			)
+			.then(data => {
+				setTotalPages(data.total_pages);
+				setData({ items: data.results, type: selectedType });
+			});
+	};
+
+	useDebounce({
+		callback: fetchPage,
+		delay: 500,
+		dependecies: [currentPage, selectedType, value],
+	});
 
 	return (
 		<>
 			<p className='search-question'>What are you looking for?</p>
 			<div className='search-box'>
 				<button
-					className={`link ${selectedType === "movie" && "active"}`}
+					className={selectedTypeMovies}
 					onClick={() => changeType("movie")}>
 					Search Movies
 				</button>
-				<button
-					className={`link ${selectedType === "tv" && "active"}`}
-					onClick={() => changeType("tv")}>
+				<button className={selectedTypeTv} onClick={() => changeType("tv")}>
 					Search Tv Series
 				</button>
 			</div>
 			<SearchInput onChange={search} value={value} />
 			<ItemGrid
 				data={data}
-				currentPage={currentPage}
+				initialPage={currentPage}
 				totalPages={totalPages}
 				changePage={changePage}
 			/>

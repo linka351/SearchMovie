@@ -1,3 +1,5 @@
+@import "../../styles/global/globalVariables.scss";
+
 .navbar {
 	display: flex;
 	justify-content: space-between;
@@ -29,7 +31,11 @@
 	.main {
 		color: white;
 		font-weight: bold;
-		font-size: 2rem;
+		font-size: 1.5rem;
+
+		@media (min-width: $desktop-media) {
+			font-size: 2rem;
+		}
 	}
 
 	.left-side-navbar {
@@ -38,7 +44,12 @@
 		margin-left: 1rem;
 
 		.navbar-link {
-			margin-left: 1rem;
+			display: none;
+
+			@media (min-width: $desktop-media) {
+				margin-left: 1rem;
+				display: block;
+			}
 		}
 	}
 
@@ -57,18 +68,5 @@
 	.search {
 		height: 1.3rem;
 		width: 1.3rem;
-	}
-}
-
-@media (max-width: 1200px) {
-	.navbar {
-		.main {
-			font-size: 1.5rem;
-		}
-		.left-side-navbar {
-			.navbar-link {
-				display: none;
-			}
-		}
 	}
 }

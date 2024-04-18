@@ -1,6 +1,8 @@
-import ItemGrid from "../../components/ItemGrid";
 import { useEffect, useState } from "react";
-import { apiKey } from "../../api/api";
+
+import ItemGrid from "../../components/itemGrid/ItemGrid";
+
+import { api, apiKey, endpoints } from "../../api/api";
 import { dataType } from "../../utils/data.const";
 
 function Movies() {
@@ -13,19 +15,21 @@ function Movies() {
 	};
 
 	useEffect(() => {
-		fetch(
-			`https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=en-US&page=${currentPage}?`
-		)
-			.then(response => response.json())
+		api
+			.get(
+				endpoints.movie +
+					`/top_rated?api_key=${apiKey}&language=en-US&page=${currentPage}?`
+			)
 			.then(data => {
 				setTotalPages(data.total_pages);
 				setData({ items: data.results, type: dataType.movie });
 			});
 	}, [currentPage]);
+
 	return (
 		<ItemGrid
 			data={data}
-			currentPage={currentPage}
+			initialPage={currentPage}
 			totalPages={totalPages}
 			changePage={changePage}
 		/>
