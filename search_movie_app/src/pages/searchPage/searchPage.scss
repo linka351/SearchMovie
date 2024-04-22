@@ -1,7 +1,7 @@
 @import "../../styles/global/globalVariables.scss";
 
 .search-question {
-	margin-top: 5px;
+	margin-top: 20px;
 	font-size: 1.8rem;
 	font-weight: bold;
 	text-align: center;
@@ -24,7 +24,8 @@
 		display: flex;
 		justify-content: space-around;
 		flex-direction: row;
-		margin: 0;
+		margin: auto;
+		width: 70%;
 	}
 
 	button {
@@ -51,4 +52,9 @@
 		text-decoration: none;
 		color: white;
 	}
+}
+.fail-data {
+	color: white;
+	font-size: 1.5rem;
+	text-align: center;
 }

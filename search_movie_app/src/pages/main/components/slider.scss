@@ -9,6 +9,8 @@
 	img {
 		height: 80vh;
 		width: 100vw;
+		object-fit: cover;
+		object-position: top;
 	}
 
 	.description-movie {
@@ -25,6 +27,7 @@
 
 		p {
 			font-size: 12px;
+			padding: 0 2% 0 2%;
 
 			@media (min-width: $tablet-media) {
 				font-size: 1rem;

@@ -8,7 +8,6 @@ import { route } from "../../utils/routes";
 import noImage from "../../images/noImage.jpg";
 import useDebounce from "../../hooks/useDebounce";
 import "./itemGrid.scss";
-import "../../styles/loader.scss";
 
 function ItemGrid({ data, initialPage, totalPages, changePage }) {
 	const [currentPage, setCurrentPage] = useState(initialPage);
@@ -19,7 +18,7 @@ function ItemGrid({ data, initialPage, totalPages, changePage }) {
 
 	useDebounce({
 		callback: updatePage,
-		delay: 500,
+		delay: 300,
 		dependecies: [currentPage],
 	});
 	if (!data) {
@@ -34,6 +33,10 @@ function ItemGrid({ data, initialPage, totalPages, changePage }) {
 		);
 	}
 
+	if (data.items.length === 0) {
+		return <p>Podaj Film z bazy danych</p>;
+	}
+
 	const takeToNextPage = () => {
 		if (currentPage === totalPages) return;
 		setCurrentPage(prev => prev + 1);
@@ -45,7 +48,7 @@ function ItemGrid({ data, initialPage, totalPages, changePage }) {
 	};
 
 	const { items, type } = data;
-	const pageCounter = <p>{`${currentPage}/${totalPages}`}</p>;
+	const pageCounter = `${currentPage}/${totalPages}`;
 
 	return (
 		<>

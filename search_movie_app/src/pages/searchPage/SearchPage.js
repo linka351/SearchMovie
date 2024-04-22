@@ -28,9 +28,6 @@ function SearchPage() {
 		setValue(e.target.value);
 	};
 
-	const selectedTypeMovies = `link ${selectedType === "movie" && "active"}`;
-	const selectedTypeTv = `link ${selectedType === "tv" && "active"}`;
-
 	const fetchPage = () => {
 		if (!value) {
 			setTotalPages(null);
@@ -57,16 +54,21 @@ function SearchPage() {
 		dependecies: [currentPage, selectedType, value],
 	});
 
+	const selectMoviesClassName = `link ${selectedType === "movie" && "active"}`;
+	const selectTvClasssName = `link ${selectedType === "tv" && "active"}`;
+
+	console.log(data);
+
 	return (
 		<>
 			<p className='search-question'>What are you looking for?</p>
 			<div className='search-box'>
 				<button
-					className={selectedTypeMovies}
+					className={selectMoviesClassName}
 					onClick={() => changeType("movie")}>
 					Search Movies
 				</button>
-				<button className={selectedTypeTv} onClick={() => changeType("tv")}>
+				<button className={selectTvClasssName} onClick={() => changeType("tv")}>
 					Search Tv Series
 				</button>
 			</div>

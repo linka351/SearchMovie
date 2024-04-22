@@ -6,8 +6,6 @@ import { Link } from "react-router-dom";
 import { api, endpoints, apiKey } from "../../../api/api";
 
 import "./slider.scss";
-import "../../../styles/loader.scss";
-
 const imageCount = 1;
 const IMG_URL = "https://image.tmdb.org/t/p/original/";
 

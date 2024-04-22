@@ -57,8 +57,8 @@ function Details() {
 	const imageSrc = singleElement.backdrop_path
 		? `${IMG_URL}${singleElement.backdrop_path}`
 		: noImage;
-	const dateExist = singleElement ? singleElement.release_date : "N/A";
-	const ratingExist = singleElement.vote_average
+	const date = singleElement ? singleElement.release_date : "N/A";
+	const rating = singleElement.vote_average
 		? singleElement.vote_average.toFixed(1)
 		: "N/A";
 	const activeIconClassName = isFavourite && "active-icon";
@@ -75,14 +75,14 @@ function Details() {
 					<div className='smaller-details'>
 						<p className='production'>
 							Production:
-							<span className='date'>{dateExist}</span>
+							<span className='date'>{date}</span>
 						</p>
 						<div className='smaller-details-right'>
 							<button onClick={handleFavouriteClick}>
 								<FavouritesIcon classname={activeIconClassName} />
 							</button>
 
-							<p className='vote'>{ratingExist}</p>
+							<p className='vote'>{rating}</p>
 						</div>
 					</div>
 				</div>

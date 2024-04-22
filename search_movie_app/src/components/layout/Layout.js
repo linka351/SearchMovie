@@ -4,6 +4,7 @@ import Footer from "../footer/Footer";
 import Navbar from "../navbar/Navbar";
 
 import "./layout.scss";
+import "../../styles/loader.scss";
 
 function Layout() {
 	return (

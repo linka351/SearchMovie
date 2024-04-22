@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import ItemGrid from "../../components/itemGrid/ItemGrid";
 
@@ -9,9 +11,16 @@ function Movies() {
 	const [data, setData] = useState(null);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(null);
+	const [error, setError] = useState(null);
 
 	const changePage = page => {
 		setCurrentPage(page);
+	};
+
+	const showToastMessage = () => {
+		toast.error("Failed to fetch", {
+			position: "top-right",
+		});
 	};
 
 	useEffect(() => {
@@ -23,16 +32,22 @@ function Movies() {
 			.then(data => {
 				setTotalPages(data.total_pages);
 				setData({ items: data.results, type: dataType.movie });
+			})
+			.catch(() => {
+				setError(showToastMessage);
 			});
 	}, [currentPage]);
-
 	return (
-		<ItemGrid
-			data={data}
-			initialPage={currentPage}
-			totalPages={totalPages}
-			changePage={changePage}
-		/>
+		<>
+			{error}
+			<ItemGrid
+				data={data}
+				initialPage={currentPage}
+				totalPages={totalPages}
+				changePage={changePage}
+			/>
+			<ToastContainer />
+		</>
 	);
 }
 
