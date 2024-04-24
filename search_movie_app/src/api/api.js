@@ -1,6 +1,6 @@
 export const apiKey = process.env.REACT_APP_IMAGE_API_KEY;
 export const IMG_URL = "https://image.tmdb.org/t/p/w500/";
-export const BASE_URL = "https://api.themoviedb.org/33";
+export const BASE_URL = "https://api.themoviedb.org/3";
 
 export const endpoints = {
 	movie: BASE_URL + "/movie",

@@ -1,5 +1,8 @@
 import { useCallback, useState } from "react";
 import { FaBars, FaMagnifyingGlass, FaXmark } from "react-icons/fa6";
+import { BiLogOutCircle } from "react-icons/bi";
+import { Tooltip as ReactTooltip } from "react-tooltip";
+
 import { Link } from "react-router-dom";
 
 import Offcanvas from "../offcanvas/Offcanvas";
@@ -11,7 +14,7 @@ import { useUserContext } from "../../context/UserContext";
 import "./navbar.scss";
 
 function Navbar() {
-	const { userLogin } = useUserContext();
+	const { userLogin, removeFromLocalStorage } = useUserContext();
 
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -24,9 +27,13 @@ function Navbar() {
 	}, []);
 
 	const sidenavIcon = !isOpen ? (
-		<FaBars className='fabar-side-nav' onClick={toggleMenu} />
+		<button onClick={toggleMenu}>
+			<FaBars className='fabar-side-nav' />
+		</button>
 	) : (
-		<FaXmark className='faxmark-side-nav' onClick={toggleMenu} />
+		<button onClick={toggleMenu}>
+			<FaXmark className='faxmark-side-nav' />
+		</button>
 	);
 	const userExist = !userLogin && <LoginPanel />;
 
@@ -53,10 +60,18 @@ function Navbar() {
 						<FaMagnifyingGlass className='search' />
 					</Link>
 					<p className='user-name'>{userLogin}</p>
+					<Link
+						to={"/"}
+						onClick={removeFromLocalStorage}
+						className='navbar-link'
+						data-tooltip-id='tooltip-1'>
+						<BiLogOutCircle className='logout' />
+					</Link>
 				</div>
 			</div>
 			<Offcanvas showMenu={isOpen} closeMenu={closeMenu} />
 			{userExist}
+			<ReactTooltip id='tooltip-1' place='left' content='Logout' />
 		</>
 	);
 }

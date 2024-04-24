@@ -13,7 +13,6 @@
 		font-weight: bold;
 		display: flex;
 		color: #b7b7b7;
-		text-decoration: none;
 		align-items: center;
 	}
 
@@ -62,6 +61,16 @@
 
 		.navbar-link {
 			margin-right: 1rem;
+		}
+		.logout {
+			font-weight: bold;
+			display: flex;
+			color: #b7b7b7;
+			align-items: center;
+			height: 100%;
+			font-size: 1.3rem;
+			margin-left: 5px;
+			cursor: pointer;
 		}
 	}
 

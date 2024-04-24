@@ -65,7 +65,9 @@ function Slider() {
 			{data.slice(activeItemIndex, activeItemIndex + imageCount).map(item => {
 				return (
 					<>
-						<Link to={`/details/${item.media_type}/${item.id}`}>
+						<Link
+							key={item.original_title}
+							to={`/details/${item.media_type}/${item.id}`}>
 							<img alt={item.title} src={`${IMG_URL}${item?.backdrop_path}`} />
 							<div className='description-movie'>
 								<h2>{item.title || item.name}</h2>

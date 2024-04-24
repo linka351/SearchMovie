@@ -26,7 +26,10 @@ function Favourites() {
 					const label = item.title || item.name;
 					return (
 						<>
-							<Link className='link' to={`/details/${item.type}/${item.id}`}>
+							<Link
+								key={item.id}
+								className='link'
+								to={`/details/${item.type}/${item.id}`}>
 								<div className='image'>
 									<img src={imageSrc} alt={label} />
 									<div className='movie-description'>

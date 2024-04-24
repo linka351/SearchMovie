@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 import ItemGrid from "../../components/itemGrid/ItemGrid";
 
 import { api, apiKey, endpoints } from "../../api/api";
 import { dataType } from "../../utils/data.const";
+
+import "react-toastify/dist/ReactToastify.css";
 
 function Movies() {
 	const [data, setData] = useState(null);

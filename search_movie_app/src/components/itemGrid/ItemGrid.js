@@ -1,13 +1,23 @@
 import ReactLoading from "react-loading";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-
+import Button from "@mui/material/Button";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { IMG_URL } from "../../api/api";
 import { route } from "../../utils/routes";
 
 import noImage from "../../images/noImage.jpg";
 import useDebounce from "../../hooks/useDebounce";
 import "./itemGrid.scss";
+
+const theme = createTheme({
+	palette: {
+		black: {
+			main: "black",
+			contrastText: "white",
+		},
+	},
+});
 
 function ItemGrid({ data, initialPage, totalPages, changePage }) {
 	const [currentPage, setCurrentPage] = useState(initialPage);
@@ -34,7 +44,7 @@ function ItemGrid({ data, initialPage, totalPages, changePage }) {
 	}
 
 	if (data.items.length === 0) {
-		return <p>Podaj Film z bazy danych</p>;
+		return <p className='search-info'>Podaj Film z bazy danych</p>;
 	}
 
 	const takeToNextPage = () => {
@@ -54,11 +64,25 @@ function ItemGrid({ data, initialPage, totalPages, changePage }) {
 		<>
 			<div className='buttons-direction'>
 				{totalPages && (
-					<>
-						<button onClick={takeToPreviousPage}>Prev</button>
+					<ThemeProvider theme={theme}>
+						<Button
+							className='button'
+							variant='contained'
+							color='black'
+							onClick={takeToPreviousPage}
+							disabled={currentPage === 1}>
+							Prev
+						</Button>
 						<p>{pageCounter}</p>
-						<button onClick={takeToNextPage}>Next</button>
-					</>
+						<Button
+							className='button'
+							variant='contained'
+							color='black'
+							onClick={takeToNextPage}
+							disabled={currentPage === totalPages}>
+							Next
+						</Button>
+					</ThemeProvider>
 				)}
 			</div>
 			<div className='movie-page'>
@@ -68,7 +92,10 @@ function ItemGrid({ data, initialPage, totalPages, changePage }) {
 						: noImage;
 					const label = item.title || item.name;
 					return (
-						<Link className='link' to={route.details + `/${type}/${item.id}`}>
+						<Link
+							key={item.id}
+							className='link'
+							to={route.details + `/${type}/${item.id}`}>
 							<div className='image'>
 								<img src={imageSrc} alt={label} />
 								<div className='movie-description'>
