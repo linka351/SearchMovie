@@ -1,0 +1,49 @@
+@import "../../styles/global/globalVariables.scss";
+
+.fabar-side-nav {
+	color: white;
+	font-size: 1.5rem;
+	cursor: pointer;
+}
+.faxmark-side-nav {
+	color: white;
+	font-size: 1.5rem;
+}
+
+.sidenav {
+	width: 150px;
+	background-color: grey;
+	position: absolute;
+	height: 93vh;
+	padding: 0 30px;
+	left: -100%;
+	transition: 1s;
+	z-index: 1;
+	position: fixed;
+	background-color: rgb(10, 10, 10);
+
+	@media (min-width: $tablet-media) {
+		width: 20%;
+	}
+	.link {
+		display: flex;
+		font-size: 1.5rem;
+		flex-direction: column;
+		color: white;
+		text-decoration: none;
+		padding: 10px;
+		background-color: rgb(47, 42, 42);
+		margin: 15%;
+		text-align: center;
+		width: 90%;
+		margin-left: 0;
+		border-radius: 10px;
+		&:hover {
+			background-color: lighten($color: black, $amount: 30%);
+		}
+	}
+}
+
+.sidenav.active {
+	left: 0;
+}

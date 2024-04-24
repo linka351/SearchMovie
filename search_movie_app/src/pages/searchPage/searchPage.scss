@@ -1,0 +1,60 @@
+@import "../../styles/global/globalVariables.scss";
+
+.search-question {
+	margin-top: 20px;
+	font-size: 1.8rem;
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 20px;
+	color: white;
+
+	@media (min-width: $mobile-media) {
+		font-size: 2rem;
+	}
+	@media (min-width: $tablet-media) {
+		font-size: 2.5rem;
+	}
+}
+.search-box {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	@media (min-width: $mobile-media) {
+		display: flex;
+		justify-content: space-around;
+		flex-direction: row;
+		margin: auto;
+		width: 70%;
+	}
+
+	button {
+		height: 50px;
+		width: 250px;
+		border-radius: 10px;
+		font-size: 1.5rem;
+		background-color: black;
+		border: none;
+		font-weight: bold;
+		margin-bottom: 15px;
+
+		@media (min-width: $mobile-media) {
+			width: 250px;
+		}
+	}
+	.active {
+		background-color: lighten($color: black, $amount: 35);
+		box-shadow: 5px 5px 10px black;
+	}
+
+	.link {
+		cursor: pointer;
+		text-decoration: none;
+		color: white;
+	}
+}
+.fail-data {
+	color: white;
+	font-size: 1.5rem;
+	text-align: center;
+}

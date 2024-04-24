@@ -1,0 +1,111 @@
+@import "../../styles/global/globalVariables.scss";
+.active-icon {
+	color: red;
+}
+.faxmark {
+	position: absolute;
+	height: 1.7rem;
+	width: 2.5rem;
+	margin-left: 92%;
+	cursor: pointer;
+	color: white;
+	top: 50px;
+
+	@media (min-width: $mobile-media) {
+		margin-left: 82%;
+		top: 45px;
+		height: 3rem;
+		width: 5rem;
+	}
+	@media (min-width: $tablet-media) {
+		margin-left: 72%;
+		top: 50px;
+	}
+	@media (min-width: $desktop-media) {
+		margin-left: 69%;
+		top: 58px;
+	}
+}
+
+.details {
+	margin-top: 5%;
+	margin-left: 5%;
+	width: 90%;
+	background-image: linear-gradient(rgb(54, 53, 53), black);
+	color: white;
+	border-radius: 3%;
+	margin-bottom: 5%;
+
+	@media (min-width: $mobile-media) {
+		margin-left: 15%;
+		width: 70%;
+	}
+	@media (min-width: $tablet-media) {
+		margin-left: 25%;
+		width: 50%;
+		border-radius: 5%;
+	}
+
+	@media (min-width: $desktop-media) {
+		width: 40%;
+		margin-left: 30%;
+		border-radius: 5%;
+	}
+
+	img {
+		margin-top: 5%;
+		border-radius: 5%;
+		width: 90%;
+		margin-left: 5%;
+	}
+
+	.details-element {
+		width: 90%;
+		margin-left: 5%;
+
+		.title {
+			text-align: center;
+			font-weight: bold;
+			font-size: 1.5rem;
+		}
+
+		.overview {
+			font-size: 1.2rem;
+		}
+	}
+
+	.smaller-details {
+		display: flex;
+		justify-content: space-between;
+
+		.smaller-details-right {
+			display: flex;
+			align-items: center;
+			width: 150px;
+			justify-content: space-around;
+		}
+
+		.production {
+			height: 3rem;
+			display: flex;
+			align-items: center;
+			font-size: 1.2rem;
+
+			.date {
+				font-weight: bold;
+				margin-left: 5%;
+			}
+		}
+
+		.vote {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background-color: gold;
+			width: 3rem;
+			height: 3rem;
+			font-size: 1.2rem;
+			border-radius: 50%;
+		}
+	}
+}

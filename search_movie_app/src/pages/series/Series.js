@@ -1,0 +1,39 @@
+import { useEffect, useState } from "react";
+
+import ItemGrid from "../../components/itemGrid/ItemGrid";
+
+import { api, apiKey, endpoints } from "../../api/api";
+import { dataType } from "../../utils/data.const";
+
+function Series() {
+	const [data, setData] = useState(null);
+	const [currentPage, setCurrentPage] = useState(1);
+	const [totalPages, setTotalPages] = useState(null);
+
+	const changePage = page => {
+		setCurrentPage(page);
+	};
+
+	useEffect(() => {
+		api
+			.get(
+				endpoints.series +
+					`/top_rated?api_key=${apiKey}&language=en-US&page=${currentPage}?`
+			)
+			.then(data => {
+				setTotalPages(data.total_pages);
+				setData({ items: data.results, type: dataType.tv });
+			});
+	}, [currentPage]);
+
+	return (
+		<ItemGrid
+			data={data}
+			initialPage={currentPage}
+			totalPages={totalPages}
+			changePage={changePage}
+		/>
+	);
+}
+
+export default Series;
