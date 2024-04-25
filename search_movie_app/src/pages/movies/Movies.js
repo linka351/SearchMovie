@@ -1,55 +1,41 @@
-import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 
 import ItemGrid from "../../components/itemGrid/ItemGrid";
 
-import { api, apiKey, endpoints } from "../../api/api";
+import { endpoints } from "../../api/api";
 import { dataType } from "../../utils/data.const";
+import { useFetchPagination } from "../../hooks/useFetchPagination";
 
 import "react-toastify/dist/ReactToastify.css";
 
 function Movies() {
-	const [data, setData] = useState(null);
-	const [currentPage, setCurrentPage] = useState(1);
-	const [totalPages, setTotalPages] = useState(null);
-	const [error, setError] = useState(null);
+  const url = endpoints.movie + '/top_rated';
 
-	const changePage = page => {
-		setCurrentPage(page);
-	};
+  const showToastMessage = () => {
+    toast.error("Failed to fetch", {
+      position: "top-right",
+    });
+  };
 
-	const showToastMessage = () => {
-		toast.error("Failed to fetch", {
-			position: "top-right",
-		});
-	};
+  const { changePage, currentPage, data, isLoading, totalPages } = useFetchPagination({
+    url,
+    dataType,
+    onError: showToastMessage,
+  });
 
-	useEffect(() => {
-		api
-			.get(
-				endpoints.movie +
-					`/top_rated?api_key=${apiKey}&language=en-US&page=${currentPage}?`
-			)
-			.then(data => {
-				setTotalPages(data.total_pages);
-				setData({ items: data.results, type: dataType.movie });
-			})
-			.catch(() => {
-				setError(showToastMessage);
-			});
-	}, [currentPage]);
-	return (
-		<>
-			{error}
-			<ItemGrid
-				data={data}
-				initialPage={currentPage}
-				totalPages={totalPages}
-				changePage={changePage}
-			/>
-			<ToastContainer />
-		</>
-	);
+;
+  return (
+    <>
+      <ItemGrid
+        data={data}
+        initialPage={currentPage}
+        totalPages={totalPages}
+        changePage={changePage}
+        isLoading={isLoading}
+      />
+      <ToastContainer />
+    </>
+  );
 }
 
 export default Movies;

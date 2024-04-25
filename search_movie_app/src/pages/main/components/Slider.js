@@ -64,7 +64,6 @@ function Slider() {
 		<div className='slider'>
 			{data.slice(activeItemIndex, activeItemIndex + imageCount).map(item => {
 				return (
-					<>
 						<Link
 							key={item.original_title}
 							to={`/details/${item.media_type}/${item.id}`}>
@@ -74,7 +73,6 @@ function Slider() {
 								<p>{item.overview}</p>
 							</div>
 						</Link>
-					</>
 				);
 			})}
 			{isFirstItem && (
