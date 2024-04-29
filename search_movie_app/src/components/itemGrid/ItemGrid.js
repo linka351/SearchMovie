@@ -19,7 +19,7 @@ const theme = createTheme({
 	},
 });
 
-function ItemGrid({ data, initialPage, totalPages, changePage }) {
+function ItemGrid({ data, initialPage, totalPages, changePage, isLoading }) {
 	const [currentPage, setCurrentPage] = useState(initialPage);
 
 	const updatePage = () => {
@@ -28,10 +28,10 @@ function ItemGrid({ data, initialPage, totalPages, changePage }) {
 
 	useDebounce({
 		callback: updatePage,
-		delay: 300,
+		delay: 200,
 		dependecies: [currentPage],
 	});
-	if (!data) {
+	if (isLoading) {
 		return (
 			<ReactLoading
 				className='loader'

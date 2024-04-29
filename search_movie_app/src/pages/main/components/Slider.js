@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 import { MdOutlineNavigateNext, MdNavigateBefore } from "react-icons/md";
 import ReactLoading from "react-loading";
 import { Link } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 import { api, endpoints, apiKey } from "../../../api/api";
+import { showToastMessage } from "../../../utils/error.const";
 
 import "./slider.scss";
+
 const imageCount = 1;
 const IMG_URL = "https://image.tmdb.org/t/p/original/";
 
@@ -27,6 +30,9 @@ function Slider() {
 
 			.then(data => {
 				setData(data.results);
+			})
+			.catch(() => {
+				showToastMessage();
 			});
 	}, []);
 
@@ -64,17 +70,16 @@ function Slider() {
 		<div className='slider'>
 			{data.slice(activeItemIndex, activeItemIndex + imageCount).map(item => {
 				return (
-					<>
-						<Link
-							key={item.original_title}
-							to={`/details/${item.media_type}/${item.id}`}>
-							<img alt={item.title} src={`${IMG_URL}${item?.backdrop_path}`} />
-							<div className='description-movie'>
-								<h2>{item.title || item.name}</h2>
-								<p>{item.overview}</p>
-							</div>
-						</Link>
-					</>
+					<Link
+						key={item.original_title}
+						to={`/details/${item.media_type}/${item.id}`}>
+						<img alt={item.title} src={`${IMG_URL}${item?.backdrop_path}`} />
+						<div className='description-movie'>
+							<h2>{item.title || item.name}</h2>
+							<p>{item.overview}</p>
+						</div>
+						<ToastContainer />
+					</Link>
 				);
 			})}
 			{isFirstItem && (
