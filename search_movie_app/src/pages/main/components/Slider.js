@@ -57,6 +57,7 @@ function Slider() {
 	if (data.length === 0) {
 		return (
 			<ReactLoading
+				data-testid='loader'
 				className='loader'
 				type='spin'
 				height={"20%"}
@@ -83,7 +84,10 @@ function Slider() {
 				);
 			})}
 			{isFirstItem && (
-				<button onClick={prevTrendingMovie} className='btn btn-left'>
+				<button
+					onClick={prevTrendingMovie}
+					data-testid='prev-button'
+					className='btn btn-left'>
 					<MdNavigateBefore />
 				</button>
 			)}

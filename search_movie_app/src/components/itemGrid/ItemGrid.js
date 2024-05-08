@@ -34,6 +34,7 @@ function ItemGrid({ data, initialPage, totalPages, changePage, isLoading }) {
 	if (isLoading) {
 		return (
 			<ReactLoading
+				data-testId='loader'
 				className='loader'
 				type='spin'
 				height={"15%"}
