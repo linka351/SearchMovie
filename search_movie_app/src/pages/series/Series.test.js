@@ -3,7 +3,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 
-import Movies from "./Movies";
+import Series from "./Series";
 
 jest.mock("../../api/api");
 
@@ -11,7 +11,7 @@ afterEach(() => {
 	jest.restoreAllMocks();
 });
 
-describe("Movies component", () => {
+describe("Series component", () => {
 	test("renders loading spinner while fetching data", async () => {
 		const mockData = {
 			results: [
@@ -26,7 +26,7 @@ describe("Movies component", () => {
 
 		render(
 			<MemoryRouter>
-				<Movies />
+				<Series />
 			</MemoryRouter>
 		);
 
@@ -58,7 +58,7 @@ describe("Movies component", () => {
 
 		render(
 			<MemoryRouter>
-				<Movies />
+				<Series />
 			</MemoryRouter>
 		);
 
