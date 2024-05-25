@@ -1,6 +1,10 @@
 import "./searchInput.scss";
 
 function SearchInput({ onChange, value }) {
+	const handleChange = e => {
+		onChange(e.target.value);
+	};
+
 	return (
 		<>
 			<div className='input-container'>
@@ -8,7 +12,7 @@ function SearchInput({ onChange, value }) {
 					className='search-input'
 					type='text'
 					value={value}
-					onChange={onChange}
+					onChange={handleChange}
 					placeholder='Czego Szukasz?'
 				/>
 			</div>
