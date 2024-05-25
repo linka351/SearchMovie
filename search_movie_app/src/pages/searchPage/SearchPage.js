@@ -26,9 +26,9 @@ function SearchPage() {
 		setSelectedType(type);
 	};
 
-	const search = e => {
+	const search = value => {
 		setCurrentPage(1);
-		setValue(e.target.value);
+		setValue(value);
 	};
 
 	const fetchPage = () => {
