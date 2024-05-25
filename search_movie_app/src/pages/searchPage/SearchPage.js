@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
 import ItemGrid from "../../components/itemGrid/ItemGrid";
 import SearchInput from "./components/SearchInput";
 
 import { api, apiKey, endpoints } from "../../api/api";
 import useDebounce from "../../hooks/useDebounce";
-import { showToastMessage } from "../../utils/error.const";
+import { errorsMesseages } from "../../utils/error.const";
 
 import "./searchPage.scss";
 
@@ -26,9 +26,9 @@ function SearchPage() {
 		setSelectedType(type);
 	};
 
-	const search = e => {
+	const search = value => {
 		setCurrentPage(1);
-		setValue(e.target.value);
+		setValue(value);
 	};
 
 	const fetchPage = () => {
@@ -52,7 +52,9 @@ function SearchPage() {
 				setData({ items: data.results, type: selectedType });
 			})
 			.catch(() => {
-				showToastMessage();
+				toast.error(errorsMesseages.failedFetch, {
+					position: "top-right",
+				});
 			})
 			.finally(() => {
 				setIsLoading(false);
@@ -89,7 +91,6 @@ function SearchPage() {
 				totalPages={totalPages}
 				changePage={changePage}
 			/>
-			<ToastContainer />
 		</>
 	);
 }

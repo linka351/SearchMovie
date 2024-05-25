@@ -1,7 +1,4 @@
-import { toast } from "react-toastify";
-
-export const showToastMessage = () => {
-	toast.error("Failed to fetch", {
-		position: "top-right",
-	});
+export const errorsMesseages = {
+	failedFetch:
+		"This page did not load correctly. Please refresh the page or try again later.",
 };

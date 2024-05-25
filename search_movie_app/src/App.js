@@ -1,4 +1,5 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 import UserContextProvider from "./context/UserContext";
 import FavouritesContextProvider from "./context/FavouritesContext";
@@ -49,11 +50,14 @@ const router = createBrowserRouter([
 
 function App() {
 	return (
-		<UserContextProvider>
-			<FavouritesContextProvider>
-				<RouterProvider router={router} />
-			</FavouritesContextProvider>
-		</UserContextProvider>
+		<>
+			<UserContextProvider>
+				<FavouritesContextProvider>
+					<RouterProvider router={router} />
+				</FavouritesContextProvider>
+			</UserContextProvider>
+			<ToastContainer />
+		</>
 	);
 }
 

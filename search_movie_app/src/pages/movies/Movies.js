@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
 import ItemGrid from "../../components/itemGrid/ItemGrid";
 
 import { api, apiKey, endpoints } from "../../api/api";
 import { dataType } from "../../utils/data.const";
-import { showToastMessage } from "../../utils/error.const";
+import { errorsMesseages } from "../../utils/error.const";
 
 function Movies() {
 	const [data, setData] = useState(null);
@@ -29,7 +29,9 @@ function Movies() {
 				setData({ items: data.results, type: dataType.movie });
 			})
 			.catch(() => {
-				showToastMessage();
+				toast.error(errorsMesseages.failedFetch, {
+					position: "top-right",
+				});
 			})
 			.finally(() => {
 				setIsLoading(false);
@@ -44,7 +46,6 @@ function Movies() {
 				totalPages={totalPages}
 				changePage={changePage}
 			/>
-			<ToastContainer />
 		</>
 	);
 }

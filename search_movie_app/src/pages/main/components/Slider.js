@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { MdOutlineNavigateNext, MdNavigateBefore } from "react-icons/md";
 import ReactLoading from "react-loading";
 import { Link } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
 import { api, endpoints, apiKey } from "../../../api/api";
-import { showToastMessage } from "../../../utils/error.const";
+import { errorsMesseages } from "../../../utils/error.const";
 
 import "./slider.scss";
 
@@ -32,7 +32,9 @@ function Slider() {
 				setData(data.results);
 			})
 			.catch(() => {
-				showToastMessage();
+				toast.error(errorsMesseages.failedFetch, {
+					position: "top-right",
+				});
 			});
 	}, []);
 
@@ -57,6 +59,7 @@ function Slider() {
 	if (data.length === 0) {
 		return (
 			<ReactLoading
+				data-testid='loader'
 				className='loader'
 				type='spin'
 				height={"20%"}
@@ -78,12 +81,14 @@ function Slider() {
 							<h2>{item.title || item.name}</h2>
 							<p>{item.overview}</p>
 						</div>
-						<ToastContainer />
 					</Link>
 				);
 			})}
 			{isFirstItem && (
-				<button onClick={prevTrendingMovie} className='btn btn-left'>
+				<button
+					onClick={prevTrendingMovie}
+					data-testid='prev-button'
+					className='btn btn-left'>
 					<MdNavigateBefore />
 				</button>
 			)}

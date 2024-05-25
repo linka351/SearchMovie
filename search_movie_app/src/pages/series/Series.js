@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
 import ItemGrid from "../../components/itemGrid/ItemGrid";
 
 import { api, apiKey, endpoints } from "../../api/api";
 import { dataType } from "../../utils/data.const";
-import { showToastMessage } from "../../utils/error.const";
+import { errorsMesseages } from "../../utils/error.const";
 
 function Series() {
 	const [data, setData] = useState(null);
@@ -30,7 +30,9 @@ function Series() {
 				setData({ items: data.results, type: dataType.tv });
 			})
 			.catch(() => {
-				showToastMessage();
+				toast.error(errorsMesseages.failedFetch, {
+					position: "top-right",
+				});
 			})
 			.finally(() => {
 				setIsLoading(false);
@@ -46,7 +48,6 @@ function Series() {
 				totalPages={totalPages}
 				changePage={changePage}
 			/>
-			<ToastContainer />
 		</>
 	);
 }
