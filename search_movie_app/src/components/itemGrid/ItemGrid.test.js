@@ -1,5 +1,6 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
+import { render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
+import userEvent from "@testing-library/user-event";
 import ItemGrid from "./ItemGrid";
 
 const mockData = {
@@ -16,7 +17,7 @@ const mockIsLoading = false;
 
 test("renders correct data when loaded", () => {
 	render(
-		<BrowserRouter>
+		<MemoryRouter>
 			<ItemGrid
 				data={mockData}
 				initialPage={mockInitialPage}
@@ -24,7 +25,7 @@ test("renders correct data when loaded", () => {
 				changePage={mockChangePage}
 				isLoading={mockIsLoading}
 			/>
-		</BrowserRouter>
+		</MemoryRouter>
 	);
 	const movieElements = screen.getAllByRole("link");
 	expect(movieElements).toHaveLength(mockData.items.length);
@@ -32,7 +33,7 @@ test("renders correct data when loaded", () => {
 
 // test("handles pagination correctly", async () => {
 // 	render(
-// 		<BrowserRouter>
+// 		<MemoryRouter>
 // 			<ItemGrid
 // 				data={mockData}
 // 				initialPage={mockInitialPage}
@@ -40,23 +41,25 @@ test("renders correct data when loaded", () => {
 // 				changePage={mockChangePage}
 // 				isLoading={mockIsLoading}
 // 			/>
-// 		</BrowserRouter>
+// 		</MemoryRouter>
 // 	);
 // 	const nextPageButton = screen.getByText("Next");
-// 	await fireEvent.click(nextPageButton);
+// 	await userEvent.click(nextPageButton);
 
 // 	expect(mockChangePage).toHaveBeenCalledWith(mockInitialPage + 1);
 // });
 
 test("renders 'Podaj Film z bazy danych' when no items", () => {
 	render(
-		<ItemGrid
-			data={{ items: [], type: "movies" }}
-			initialPage={mockInitialPage}
-			totalPages={mockTotalPages}
-			changePage={mockChangePage}
-			isLoading={mockIsLoading}
-		/>
+		<MemoryRouter>
+			<ItemGrid
+				data={{ items: [], type: "movies" }}
+				initialPage={mockInitialPage}
+				totalPages={mockTotalPages}
+				changePage={mockChangePage}
+				isLoading={mockIsLoading}
+			/>
+		</MemoryRouter>
 	);
 	const messageElement = screen.getByText("Podaj Film z bazy danych");
 	expect(messageElement).toBeInTheDocument();

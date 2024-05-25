@@ -1,6 +1,5 @@
 import React from "react";
-import { render, screen, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { render, screen, fireEvent } from "@testing-library/react";
 import SearchInput from "./SearchInput";
 
 describe("SearchInput component", () => {
@@ -11,21 +10,15 @@ describe("SearchInput component", () => {
 		expect(inputElement).toHaveAttribute("value", "Test Value");
 	});
 
-	// Nie działa !!!!!!!
-	// test("calls onChange function with input value when input changes", async () => {
-	// 	const onChangeMock = jest.fn();
-	// 	const user = userEvent.setup();
-	// 	render(<SearchInput value='' onChange={onChangeMock} />);
+	test("calls onChange function with input value when input changes", async () => {
+		const onChangeMock = jest.fn();
+		render(<SearchInput value='' onChange={onChangeMock} />);
 
-	// 	const inputElement = screen.getByPlaceholderText("Czego Szukasz?");
-	// 	await user.type(inputElement, "Test Value", {
-	// 		target: { value: "Test Value" },
-	// 	});
+		const inputElement = screen.getByPlaceholderText("Czego Szukasz?");
+		fireEvent.change(inputElement, { target: { value: "Test Value" } });
 
-	// 	screen.debug();
+		expect(onChangeMock).toHaveBeenCalledTimes(1);
 
-	// expect(onChangeMock).toHaveBeenCalledTimes(10);
-
-	// expect(onChangeMock).toHaveBeenCalledWith("Test Value");
-	//});
+		expect(onChangeMock).toHaveBeenCalledWith("Test Value");
+	});
 });

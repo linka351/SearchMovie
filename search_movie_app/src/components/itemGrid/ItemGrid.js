@@ -1,23 +1,13 @@
 import ReactLoading from "react-loading";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import Button from "@mui/material/Button";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+
 import { IMG_URL } from "../../api/api";
 import { route } from "../../utils/routes";
 
 import noImage from "../../images/noImage.jpg";
 import useDebounce from "../../hooks/useDebounce";
 import "./itemGrid.scss";
-
-const theme = createTheme({
-	palette: {
-		black: {
-			main: "black",
-			contrastText: "white",
-		},
-	},
-});
 
 function ItemGrid({ data, initialPage, totalPages, changePage, isLoading }) {
 	const [currentPage, setCurrentPage] = useState(initialPage);
@@ -63,27 +53,24 @@ function ItemGrid({ data, initialPage, totalPages, changePage, isLoading }) {
 
 	return (
 		<>
-			<div className='buttons-direction'>
+			<div className='buttons-container'>
 				{totalPages && (
-					<ThemeProvider theme={theme}>
-						<Button
-							className='button'
-							variant='contained'
-							color='black'
+					<div className='buttons-direction'>
+						<button
+							className='change-page'
 							onClick={takeToPreviousPage}
 							disabled={currentPage === 1}>
 							Prev
-						</Button>
+						</button>
 						<p>{pageCounter}</p>
-						<Button
-							className='button'
-							variant='contained'
-							color='black'
+						<button
+							data-testid='next'
 							onClick={takeToNextPage}
+							className='change-page'
 							disabled={currentPage === totalPages}>
 							Next
-						</Button>
-					</ThemeProvider>
+						</button>
+					</div>
 				)}
 			</div>
 			<div className='movie-page'>

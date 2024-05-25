@@ -66,7 +66,7 @@ describe("Series component", () => {
 			expect(screen.queryByTestId("loader")).toBeNull();
 		});
 
-		const nextButton = screen.getByText("Next");
+		const nextButton = screen.getByTestId("next");
 		userEvent.click(nextButton);
 
 		await waitFor(() => {

@@ -1,49 +1,61 @@
 import React from "react";
-import { render, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom/extend-expect";
 import { MemoryRouter } from "react-router-dom";
 import Navbar from "./Navbar";
 
+function ResizeObserver() {
+	return {
+		observe() {},
+		unobserve() {},
+		disconnect() {},
+	};
+}
+
+global.ResizeObserver = ResizeObserver;
+
 describe("Navbar Component", () => {
 	test("renders Navbar with all elements", () => {
-		const { getByText, queryAllByText } = render(
+		render(
 			<MemoryRouter>
 				<Navbar />
 			</MemoryRouter>
 		);
 
-		expect(getByText("MovieSearch")).toBeInTheDocument();
-		expect(queryAllByText("Movies")).toHaveLength(2);
-		expect(queryAllByText("Series")).toHaveLength(2);
-		expect(queryAllByText("Favourites")).toHaveLength(2);
-		expect(getByText("Search")).toBeInTheDocument();
-		expect(getByText("Logout")).toBeInTheDocument();
+		expect(screen.getByText("MovieSearch")).toBeInTheDocument();
+		expect(screen.getAllByText("Movies")).toHaveLength(2);
+		expect(screen.getAllByText("Series")).toHaveLength(2);
+		expect(screen.getAllByText("Favourites")).toHaveLength(2);
+		expect(screen.getByText("Search")).toBeInTheDocument();
+		expect(screen.getByText("Logout")).toBeInTheDocument();
 	});
 
 	test("toggles side menu", async () => {
-		const { findByLabelText } = render(
+		render(
 			<MemoryRouter>
 				<Navbar />
 			</MemoryRouter>
 		);
-		const menuButton = await findByLabelText("toggle side navigation");
-		fireEvent.click(menuButton);
+		const menuButton = await screen.findByLabelText("toggle side navigation");
+		userEvent.click(menuButton);
+
 		setTimeout(() => {
 			expect(menuButton).toHaveClass("faxmark-side-nav");
 		}, 500);
 	});
 
 	test("logs out user on logout button click", () => {
-		const { getByText } = render(
+		render(
 			<MemoryRouter>
 				<Navbar />
 			</MemoryRouter>
 		);
-		const logoutButton = getByText("Logout");
+		const logoutButton = screen.getByText("Logout");
 		const removeFromLocalStorageMock = jest.fn();
 		logoutButton.onclick = removeFromLocalStorageMock;
 
-		fireEvent.click(logoutButton);
+		userEvent.click(logoutButton);
 		expect(removeFromLocalStorageMock).toHaveBeenCalledTimes(1);
 	});
 });

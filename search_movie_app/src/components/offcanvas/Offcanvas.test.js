@@ -1,41 +1,41 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import Offcanvas from "./Offcanvas";
 import { MemoryRouter } from "react-router-dom";
 
 test("renders Offcanvas component", () => {
-	const { getByText } = render(
+	render(
 		<MemoryRouter>
 			<Offcanvas showMenu={true} closeMenu={() => {}} />
 		</MemoryRouter>
 	);
 
-	expect(getByText("Main Page")).toBeInTheDocument();
-	expect(getByText("Movies")).toBeInTheDocument();
-	expect(getByText("Series")).toBeInTheDocument();
-	expect(getByText("Favourites")).toBeInTheDocument();
+	expect(screen.getByText("Main Page")).toBeInTheDocument();
+	expect(screen.getByText("Movies")).toBeInTheDocument();
+	expect(screen.getByText("Series")).toBeInTheDocument();
+	expect(screen.getByText("Favourites")).toBeInTheDocument();
 });
 
-test("adds active class when showMenu is true", () => {
-	const { container } = render(
+test("adds active class to Offcanvas when showMenu is true", () => {
+	render(
 		<MemoryRouter>
 			<Offcanvas showMenu={true} closeMenu={() => {}} />
 		</MemoryRouter>
 	);
 
-	const offcanvasElement = container.firstChild;
-	expect(offcanvasElement).toHaveClass("sidenav active");
+	const offcanvasElement = document.querySelector(".sidenav.active");
+	expect(offcanvasElement).toBeInTheDocument();
 });
 
 test("changes tabIndex when showMenu is true", () => {
-	const { getByText } = render(
+	render(
 		<MemoryRouter>
 			<Offcanvas showMenu={true} closeMenu={() => {}} />
 		</MemoryRouter>
 	);
 
-	expect(getByText("Main Page")).toHaveAttribute("tabIndex", "0");
-	expect(getByText("Movies")).toHaveAttribute("tabIndex", "0");
-	expect(getByText("Series")).toHaveAttribute("tabIndex", "0");
-	expect(getByText("Favourites")).toHaveAttribute("tabIndex", "0");
+	expect(screen.getByText("Main Page")).toHaveAttribute("tabIndex", "0");
+	expect(screen.getByText("Movies")).toHaveAttribute("tabIndex", "0");
+	expect(screen.getByText("Series")).toHaveAttribute("tabIndex", "0");
+	expect(screen.getByText("Favourites")).toHaveAttribute("tabIndex", "0");
 });
