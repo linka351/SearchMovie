@@ -32,9 +32,7 @@ function Slider() {
 				setData(data.results);
 			})
 			.catch(() => {
-				toast.error(errorsMesseages.failedFetch, {
-					position: "top-right",
-				});
+				toast.error(errorsMesseages.failedFetch);
 			});
 	}, []);
 

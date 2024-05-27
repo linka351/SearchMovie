@@ -56,7 +56,7 @@ function App() {
 					<RouterProvider router={router} />
 				</FavouritesContextProvider>
 			</UserContextProvider>
-			<ToastContainer />
+			<ToastContainer position='top-right' />
 		</>
 	);
 }

@@ -30,9 +30,7 @@ function Series() {
 				setData({ items: data.results, type: dataType.tv });
 			})
 			.catch(() => {
-				toast.error(errorsMesseages.failedFetch, {
-					position: "top-right",
-				});
+				toast.error(errorsMesseages.failedFetch);
 			})
 			.finally(() => {
 				setIsLoading(false);

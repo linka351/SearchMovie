@@ -52,9 +52,7 @@ function SearchPage() {
 				setData({ items: data.results, type: selectedType });
 			})
 			.catch(() => {
-				toast.error(errorsMesseages.failedFetch, {
-					position: "top-right",
-				});
+				toast.error(errorsMesseages.failedFetch)
 			})
 			.finally(() => {
 				setIsLoading(false);

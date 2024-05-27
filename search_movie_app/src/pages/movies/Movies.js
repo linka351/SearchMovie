@@ -29,9 +29,7 @@ function Movies() {
 				setData({ items: data.results, type: dataType.movie });
 			})
 			.catch(() => {
-				toast.error(errorsMesseages.failedFetch, {
-					position: "top-right",
-				});
+				toast.error(errorsMesseages.failedFetch);
 			})
 			.finally(() => {
 				setIsLoading(false);
