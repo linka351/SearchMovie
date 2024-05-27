@@ -25,16 +25,17 @@ function Favourites() {
 						: noImage;
 					const label = item.title || item.name;
 					return (
-						<>
-							<Link className='link' to={`/details/${item.type}/${item.id}`}>
-								<div className='image'>
-									<img src={imageSrc} alt={label} />
-									<div className='movie-description'>
-										<p>{label}</p>
-									</div>
+						<Link
+							key={item.id}
+							className='link'
+							to={`/details/${item.type}/${item.id}`}>
+							<div className='image'>
+								<img src={imageSrc} alt={label} />
+								<div className='movie-description'>
+									<p>{label}</p>
 								</div>
-							</Link>
-						</>
+							</div>
+						</Link>
 					);
 				})}
 			</div>

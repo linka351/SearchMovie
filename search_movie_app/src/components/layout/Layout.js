@@ -5,6 +5,7 @@ import Navbar from "../navbar/Navbar";
 
 import "./layout.scss";
 import "../../styles/loader.scss";
+import "react-toastify/dist/ReactToastify.css";
 
 function Layout() {
 	return (

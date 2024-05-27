@@ -6,7 +6,7 @@ function Footer() {
 	return (
 		<div className='footer'>
 			<FaGithub className='icon' />
-			<p>https://github.com/linka351</p>
+			<a href='https://github.com/linka351'>https://github.com/linka351</a>
 		</div>
 	);
 }

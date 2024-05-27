@@ -2,12 +2,13 @@ import { createContext, useContext, useState, useEffect } from "react";
 
 const UserContext = createContext({
 	addToLocalStorage: null,
+	removeFromLocalStorage: null,
 });
 
 export const useUserContext = () => useContext(UserContext);
 
 const UserContextProvider = ({ children }) => {
-	const [userLogin, setUserLogin] = useState("");
+	const [userLogin, setUserLogin] = useState(null);
 
 	useEffect(() => {
 		const loginExist = JSON.parse(localStorage.getItem("name"));
@@ -19,10 +20,16 @@ const UserContextProvider = ({ children }) => {
 		localStorage.setItem("name", JSON.stringify(username));
 	};
 
+	const removeFromLocalStorage = () => {
+		setUserLogin(null);
+		localStorage.removeItem("name");
+	};
+
 	return (
 		<UserContext.Provider
 			value={{
 				addToLocalStorage,
+				removeFromLocalStorage,
 				userLogin,
 			}}>
 			{children}

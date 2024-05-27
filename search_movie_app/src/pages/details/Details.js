@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { FaXmark } from "react-icons/fa6";
+import { FaArrowLeft } from "react-icons/fa6";
 
 import FavouritesIcon from "./components/FavouritesIcon";
 
@@ -65,7 +65,10 @@ function Details() {
 
 	return (
 		<>
-			<FaXmark onClick={() => navigate(-1)} className='faxmark' />
+			<button className='arrow' onClick={() => navigate(-1)}>
+				<FaArrowLeft />
+			</button>
+
 			<div className='details'>
 				<img src={imageSrc} alt={`${singleElement.title}`} />
 

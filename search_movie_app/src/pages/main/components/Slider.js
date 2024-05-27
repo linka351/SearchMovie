@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 import { MdOutlineNavigateNext, MdNavigateBefore } from "react-icons/md";
 import ReactLoading from "react-loading";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import { api, endpoints, apiKey } from "../../../api/api";
+import { errorsMesseages } from "../../../utils/error.const";
 
 import "./slider.scss";
+
 const imageCount = 1;
 const IMG_URL = "https://image.tmdb.org/t/p/original/";
 
@@ -27,6 +30,9 @@ function Slider() {
 
 			.then(data => {
 				setData(data.results);
+			})
+			.catch(() => {
+				toast.error(errorsMesseages.failedFetch);
 			});
 	}, []);
 
@@ -51,6 +57,7 @@ function Slider() {
 	if (data.length === 0) {
 		return (
 			<ReactLoading
+				data-testid='loader'
 				className='loader'
 				type='spin'
 				height={"20%"}
@@ -64,19 +71,22 @@ function Slider() {
 		<div className='slider'>
 			{data.slice(activeItemIndex, activeItemIndex + imageCount).map(item => {
 				return (
-					<>
-						<Link to={`/details/${item.media_type}/${item.id}`}>
-							<img alt={item.title} src={`${IMG_URL}${item?.backdrop_path}`} />
-							<div className='description-movie'>
-								<h2>{item.title || item.name}</h2>
-								<p>{item.overview}</p>
-							</div>
-						</Link>
-					</>
+					<Link
+						key={item.original_title}
+						to={`/details/${item.media_type}/${item.id}`}>
+						<img alt={item.title} src={`${IMG_URL}${item?.backdrop_path}`} />
+						<div className='description-movie'>
+							<h2>{item.title || item.name}</h2>
+							<p>{item.overview}</p>
+						</div>
+					</Link>
 				);
 			})}
 			{isFirstItem && (
-				<button onClick={prevTrendingMovie} className='btn btn-left'>
+				<button
+					onClick={prevTrendingMovie}
+					data-testid='prev-button'
+					className='btn btn-left'>
 					<MdNavigateBefore />
 				</button>
 			)}

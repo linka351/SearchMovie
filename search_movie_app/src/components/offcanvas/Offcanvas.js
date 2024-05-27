@@ -8,7 +8,7 @@ import "./offcanvas.scss";
 function Offcanvas({ showMenu, closeMenu }) {
 	const { pathname } = useLocation();
 	const addActiveClass = `sidenav ${showMenu ? "active" : ""}`;
-	const hideOffcanvasLink = showMenu ? 0 : -1;
+	const tabIndex = showMenu ? 0 : -1;
 
 	useEffect(() => {
 		closeMenu();
@@ -16,16 +16,16 @@ function Offcanvas({ showMenu, closeMenu }) {
 
 	return (
 		<div className={addActiveClass}>
-			<Link className='link' to={route.main} tabIndex={hideOffcanvasLink}>
+			<Link className='link' to={route.main} tabIndex={tabIndex}>
 				Main Page
 			</Link>
-			<Link className='link' to={route.movies} tabIndex={hideOffcanvasLink}>
+			<Link className='link' to={route.movies} tabIndex={tabIndex}>
 				Movies
 			</Link>
-			<Link className='link' to={route.series} tabIndex={hideOffcanvasLink}>
+			<Link className='link' to={route.series} tabIndex={tabIndex}>
 				Series
 			</Link>
-			<Link className='link' to={route.favourites} tabIndex={hideOffcanvasLink}>
+			<Link className='link' to={route.favourites} tabIndex={tabIndex}>
 				Favourites
 			</Link>
 		</div>

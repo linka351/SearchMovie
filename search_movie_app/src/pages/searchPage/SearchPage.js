@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 import ItemGrid from "../../components/itemGrid/ItemGrid";
 import SearchInput from "./components/SearchInput";
 
 import { api, apiKey, endpoints } from "../../api/api";
 import useDebounce from "../../hooks/useDebounce";
+import { errorsMesseages } from "../../utils/error.const";
 
 import "./searchPage.scss";
 
@@ -14,6 +16,7 @@ function SearchPage() {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(null);
 	const [selectedType, setSelectedType] = useState("movie");
+	const [isLoading, setIsLoading] = useState(true);
 
 	const changePage = page => {
 		setCurrentPage(page);
@@ -23,18 +26,20 @@ function SearchPage() {
 		setSelectedType(type);
 	};
 
-	const search = e => {
+	const search = value => {
 		setCurrentPage(1);
-		setValue(e.target.value);
+		setValue(value);
 	};
 
 	const fetchPage = () => {
 		if (!value) {
 			setTotalPages(null);
 			setData({ items: [], type: selectedType });
-
+			setIsLoading(false);
 			return;
 		}
+
+		setIsLoading(true);
 
 		api
 
@@ -45,6 +50,12 @@ function SearchPage() {
 			.then(data => {
 				setTotalPages(data.total_pages);
 				setData({ items: data.results, type: selectedType });
+			})
+			.catch(() => {
+				toast.error(errorsMesseages.failedFetch)
+			})
+			.finally(() => {
+				setIsLoading(false);
 			});
 	};
 
@@ -56,8 +67,6 @@ function SearchPage() {
 
 	const selectMoviesClassName = `link ${selectedType === "movie" && "active"}`;
 	const selectTvClasssName = `link ${selectedType === "tv" && "active"}`;
-
-	console.log(data);
 
 	return (
 		<>
@@ -74,6 +83,7 @@ function SearchPage() {
 			</div>
 			<SearchInput onChange={search} value={value} />
 			<ItemGrid
+				isLoading={isLoading}
 				data={data}
 				initialPage={currentPage}
 				totalPages={totalPages}
