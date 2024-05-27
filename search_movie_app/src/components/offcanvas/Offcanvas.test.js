@@ -23,7 +23,7 @@ test("adds active class to Offcanvas when showMenu is true", () => {
 		</MemoryRouter>
 	);
 
-	const offcanvasElement = document.querySelector(".sidenav.active");
+	const offcanvasElement = screen.getByTestId("side-nav");
 	expect(offcanvasElement).toBeInTheDocument();
 });
 

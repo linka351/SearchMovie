@@ -6,7 +6,7 @@ jest.useFakeTimers();
 test("calls callback after delay", () => {
 	const callback = jest.fn();
 	const delay = 200;
-	const dependencies = [1];
+	const dependencies = [];
 
 	renderHook(() => useDebounce({ callback, delay, dependecies: dependencies }));
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 
@@ -33,13 +33,9 @@ describe("Movies component", () => {
 		const spinner = screen.getByTestId("loader");
 		expect(spinner).toBeInTheDocument();
 
-		await waitFor(() => {
-			expect(screen.queryByTestId("loader")).toBeNull();
-		});
+		await screen.findByText("Test 1", { selector: "p" });
 
-		expect(
-			await screen.findByText("Test 1", { selector: "p" })
-		).toBeInTheDocument();
+		expect(screen.queryByTestId("loader")).toBeNull();
 	});
 
 	test("should show second page when next button clicked", async () => {
@@ -62,17 +58,11 @@ describe("Movies component", () => {
 			</MemoryRouter>
 		);
 
-		await waitFor(() => {
-			expect(screen.queryByTestId("loader")).toBeNull();
-		});
+		await screen.findByText("Test 1", { selector: "p" });
 
 		const nextButton = screen.getByTestId("next");
-		userEvent.click(nextButton);
+		await userEvent.click(nextButton);
 
-		await waitFor(() => {
-			expect(screen.getByText("Test 2")).toBeInTheDocument();
-		});
-
-		expect(screen.queryByText("Test 2")).toBeInTheDocument();
+		expect(await screen.findByText("Test 2")).toBeInTheDocument();
 	});
 });

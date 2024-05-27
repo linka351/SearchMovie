@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom/extend-expect"; // Dodaj to dla matcherów jak toBeInTheDocument i toHaveClass
+import "@testing-library/jest-dom/extend-expect";
 import FavouritesIcon from "./FavouritesIcon";
 
 describe("FavouritesIcon component", () => {

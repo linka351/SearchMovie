@@ -5,16 +5,6 @@ import "@testing-library/jest-dom/extend-expect";
 import { MemoryRouter } from "react-router-dom";
 import Navbar from "./Navbar";
 
-function ResizeObserver() {
-	return {
-		observe() {},
-		unobserve() {},
-		disconnect() {},
-	};
-}
-
-global.ResizeObserver = ResizeObserver;
-
 describe("Navbar Component", () => {
 	test("renders Navbar with all elements", () => {
 		render(
@@ -31,21 +21,24 @@ describe("Navbar Component", () => {
 		expect(screen.getByText("Logout")).toBeInTheDocument();
 	});
 
-	test("toggles side menu", async () => {
+	test("checking sideNav has the active class after click", async () => {
 		render(
 			<MemoryRouter>
 				<Navbar />
 			</MemoryRouter>
 		);
-		const menuButton = await screen.findByLabelText("toggle side navigation");
-		userEvent.click(menuButton);
+		const menuButton = await screen.getByLabelText("toggle side navigation");
+		let sideNav = screen.getByTestId("side-nav");
 
-		setTimeout(() => {
-			expect(menuButton).toHaveClass("faxmark-side-nav");
-		}, 500);
+		expect(sideNav).not.toHaveClass("active");
+
+		await userEvent.click(menuButton);
+		sideNav = screen.getByTestId("side-nav");
+
+		expect(sideNav).toHaveClass("active");
 	});
 
-	test("logs out user on logout button click", () => {
+	test("logs out user on logout button click", async () => {
 		render(
 			<MemoryRouter>
 				<Navbar />
@@ -55,7 +48,7 @@ describe("Navbar Component", () => {
 		const removeFromLocalStorageMock = jest.fn();
 		logoutButton.onclick = removeFromLocalStorageMock;
 
-		userEvent.click(logoutButton);
+		await userEvent.click(logoutButton);
 		expect(removeFromLocalStorageMock).toHaveBeenCalledTimes(1);
 	});
 });

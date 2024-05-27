@@ -31,23 +31,25 @@ test("renders correct data when loaded", () => {
 	expect(movieElements).toHaveLength(mockData.items.length);
 });
 
-// test("handles pagination correctly", async () => {
-// 	render(
-// 		<MemoryRouter>
-// 			<ItemGrid
-// 				data={mockData}
-// 				initialPage={mockInitialPage}
-// 				totalPages={mockTotalPages}
-// 				changePage={mockChangePage}
-// 				isLoading={mockIsLoading}
-// 			/>
-// 		</MemoryRouter>
-// 	);
-// 	const nextPageButton = screen.getByText("Next");
-// 	await userEvent.click(nextPageButton);
-
-// 	expect(mockChangePage).toHaveBeenCalledWith(mockInitialPage + 1);
-// });
+test("handles pagination correctly", async () => {
+	render(
+		<MemoryRouter>
+			<ItemGrid
+				data={mockData}
+				initialPage={mockInitialPage}
+				totalPages={mockTotalPages}
+				changePage={mockChangePage}
+				isLoading={mockIsLoading}
+			/>
+		</MemoryRouter>
+	);
+	const nextPageButton = screen.getByText("Next");
+	await userEvent.click(nextPageButton);
+	const paginationLabel = await screen.findByText(
+		`${mockInitialPage + 1}/${mockTotalPages}`
+	);
+	expect(paginationLabel).toBeInTheDocument();
+});
 
 test("renders 'Podaj Film z bazy danych' when no items", () => {
 	render(

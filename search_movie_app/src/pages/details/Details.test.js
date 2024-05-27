@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import Details from "./Details";
@@ -55,9 +55,7 @@ describe("Details Component", () => {
 			</MemoryRouter>
 		);
 
-		await waitFor(() => {
-			expect(screen.getByText("Sample Movie")).toBeInTheDocument();
-		});
+		expect(await screen.findByText("Sample Movie")).toBeInTheDocument();
 
 		expect(screen.getByText("This is a sample movie.")).toBeInTheDocument();
 		expect(screen.getByText("2022")).toBeInTheDocument();
@@ -78,7 +76,7 @@ describe("Details Component", () => {
 		);
 
 		const backButton = screen.getByRole("button", { name: "" });
-		userEvent.click(backButton);
+		await userEvent.click(backButton);
 
 		expect(mockNavigate).toHaveBeenCalledWith(-1);
 	});
@@ -92,12 +90,10 @@ describe("Details Component", () => {
 			</MemoryRouter>
 		);
 
-		await waitFor(() => {
-			expect(screen.getByText("Sample Movie")).toBeInTheDocument();
-		});
+		expect(await screen.findByText("Sample Movie")).toBeInTheDocument();
 
 		const favouriteButton = screen.getByRole("button", { name: "favourites" });
-		userEvent.click(favouriteButton);
+		await userEvent.click(favouriteButton);
 
 		expect(mockAddFavourite).toHaveBeenCalledWith({
 			title: "Sample Movie",
