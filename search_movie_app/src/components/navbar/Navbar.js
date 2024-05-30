@@ -30,7 +30,7 @@ function Navbar() {
 	}, []);
 
 	const sidenavIcon = !isOpen ? (
-		<button onClick={toggleMenu}>
+		<button aria-label='toggle side navigation' onClick={toggleMenu}>
 			<FaBars className='fabar-side-nav' />
 		</button>
 	) : (

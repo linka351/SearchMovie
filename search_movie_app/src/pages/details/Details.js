@@ -81,7 +81,7 @@ function Details() {
 							<span className='date'>{date}</span>
 						</p>
 						<div className='smaller-details-right'>
-							<button onClick={handleFavouriteClick}>
+							<button onClick={handleFavouriteClick} aria-label='favourites'>
 								<FavouritesIcon classname={activeIconClassName} />
 							</button>
 
