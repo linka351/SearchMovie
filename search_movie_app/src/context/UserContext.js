@@ -8,7 +8,7 @@ const UserContext = createContext({
 export const useUserContext = () => useContext(UserContext);
 
 const UserContextProvider = ({ children }) => {
-	const [userLogin, setUserLogin] = useState();
+	const [userLogin, setUserLogin] = useState(null);
 
 	useEffect(() => {
 		const loginExist = JSON.parse(localStorage.getItem("name"));
@@ -21,7 +21,7 @@ const UserContextProvider = ({ children }) => {
 	};
 
 	const removeFromLocalStorage = () => {
-		setUserLogin();
+		setUserLogin(null);
 		localStorage.removeItem("name");
 	};
 
