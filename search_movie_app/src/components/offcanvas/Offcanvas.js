@@ -16,7 +16,7 @@ function Offcanvas({ showMenu, closeMenu }) {
 
 	return (
 		<div data-testid='side-nav' className={addActiveClass}>
-			<Link className='link' to={route.main} tabIndex={changeTabIndex}>
+			<Link className='link' to={route.main} tabIndex={tabIndex}>
 				Main Page
 			</Link>
 			<Link className='link' to={route.movies} tabIndex={tabIndex}>
