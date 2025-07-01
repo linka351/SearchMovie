@@ -17,7 +17,7 @@ Aby przejść do strony głównej aplikacji wystarczy że wpiszesz swój login.
 ## 🚀 Funkcje
 
 ✅ Przeglądanie bazy filmów i seriali z zewnętrznego API\
-✅ Wbudowana wyszukiwarka tytułów, podział na filmy i seriale.
+✅ Wbudowana wyszukiwarka tytułów, podział na filmy i seriale.\
 ✅ Możliwość dodawania filmów i seriali do ulubionych (localStorage)\
 ✅ Szczegółowy widok z opisem, oceną i dodatkowymi informacjami\
 ✅ Prosty system logowania\
@@ -28,16 +28,16 @@ Aby przejść do strony głównej aplikacji wystarczy że wpiszesz swój login.
 ## 📸 Zrzuty ekranu
 
 **Strona główna**\
-![Strona główna](./src/images/readme/main.png)
+![Strona główna](/search_movie_app/src/images/readme/main.png)
 
 **Filmy/Seriale/Ulubione**\
-![Filmy/Seriale/Ulubione](./src/images/readme/movies.png)
+![Filmy/Seriale/Ulubione](/search_movie_app/src/images/readme/Movies.png)
 
 **Wyszukiwarka**\
-![Wyszukiwarka](./src/images/readme/search.png)
+![Wyszukiwarka](/search_movie_app/src/images/readme/search.png)
 
 **Szczegóły wybranego tytułu**\
-![Szczegóły wybranego tytułu](./src/images/readme/single.png)
+![Szczegóły wybranego tytułu](/search_movie_app/src/images/readme/single.png)
 
 ---
 
