@@ -1,70 +1,84 @@
-# Getting Started with Create React App
+# 🎬 Biblioteka Filmowa
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Responsywna aplikacja do przeglądania filmów i seriali z podziałem na kategorie. Umożliwia wyszukiwanie tytułów, dodawanie ulubionych pozycji i szybki dostęp do szczegółowych informacji o wybranym filmie lub serialu.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## ▶️ Jak uruchomić aplikację?
 
-### `npm start`
+Aby przejść do aplikacji kliknij w link:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+[https://linka351.github.io/SearchMovie/](https://linka351.github.io/SearchMovie/)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Aby przejść do strony głównej aplikacji wystarczy że wpiszesz swój login.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🚀 Funkcje
 
-### `npm run build`
+✅ Przeglądanie bazy filmów i seriali z zewnętrznego API\
+✅ Wbudowana wyszukiwarka tytułów, podział na filmy i seriale.
+✅ Możliwość dodawania filmów i seriali do ulubionych (localStorage)\
+✅ Szczegółowy widok z opisem, oceną i dodatkowymi informacjami\
+✅ Prosty system logowania\
+✅ Pełna responsywność – aplikacja dostosowana do urządzeń mobilnych
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 📸 Zrzuty ekranu
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Strona główna**\
+![Strona główna](./src/images/readme/main.png)
 
-### `npm run eject`
+**Filmy/Seriale/Ulubione**\
+![Filmy/Seriale/Ulubione](./src/images/readme/movies.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+**Wyszukiwarka**\
+![Wyszukiwarka](./src/images/readme/search.png)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Szczegóły wybranego tytułu**\
+![Szczegóły wybranego tytułu](./src/images/readme/single.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🛠️ Technologie
 
-## Learn More
+React (JavaScript)\
+SCSS\
+Formik\
+React Icons\
+React Loader\
+React Router\
+React Toastify\
+React Tooltip\
+Testy jednostkowe
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## ▶️ Jak uruchomić projekt lokalnie
 
-### Code Splitting
+Sklonuj repozytorium:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+git clone https://github.com/linka351/SearchMovie.git
+cd SearchMovie
+```
 
-### Analyzing the Bundle Size
+Zainstaluj zależności:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+npm install
+```
 
-### Making a Progressive Web App
+Uruchom aplikację:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```bash
+npm run dev
+```
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## ✍️ Autor
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Imię i nazwisko: Kamil Linka\
+GitHub: [https://github.com/linka351](https://github.com/linka351)
