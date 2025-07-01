@@ -27,31 +27,42 @@ Aby przejść do strony głównej aplikacji wystarczy że wpiszesz swój login.
 
 ## 📸 Zrzuty ekranu
 
-**Strona główna**\
+**Strona główna**
+
 ![Strona główna](/search_movie_app/src/images/readme/main.png)
 
-**Filmy/Seriale/Ulubione**\
+**Filmy/Seriale/Ulubione**
+
 ![Filmy/Seriale/Ulubione](/search_movie_app/src/images/readme/Movies.png)
 
-**Wyszukiwarka**\
+**Wyszukiwarka**
+
 ![Wyszukiwarka](/search_movie_app/src/images/readme/search.png)
 
-**Szczegóły wybranego tytułu**\
+**Szczegóły wybranego tytułu**
 ![Szczegóły wybranego tytułu](/search_movie_app/src/images/readme/single.png)
 
 ---
 
 ## 🛠️ Technologie
 
-React (JavaScript)\
-SCSS\
-Formik\
-React Icons\
-React Loader\
-React Router\
-React Toastify\
-React Tooltip\
-Testy jednostkowe
+- React (JavaScript)
+
+- SCSS
+
+- Formik
+
+- React Icons
+
+- React Loader
+
+- React Router
+
+- React Toastify
+
+- React Tooltip
+
+- Testy jednostkowe
 
 ---
 
