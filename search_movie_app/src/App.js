@@ -53,7 +53,7 @@ function App() {
 		<>
 			<UserContextProvider>
 				<FavouritesContextProvider>
-					<RouterProvider router={router} />
+					<RouterProvider router={router} basename='/SearchMovie' />
 				</FavouritesContextProvider>
 			</UserContextProvider>
 			<ToastContainer position='top-right' />
