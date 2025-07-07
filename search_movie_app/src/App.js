@@ -1,4 +1,4 @@
-import { RouterProvider, HashRouter } from "react-router-dom";
+import { RouterProvider, createHashRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
 import UserContextProvider from "./context/UserContext";
@@ -16,7 +16,7 @@ import { route } from "./utils/routes";
 
 import "./App.scss";
 
-const router = HashRouter([
+const router = createHashRouter([
 	{
 		element: <Layout />,
 		children: [
