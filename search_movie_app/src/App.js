@@ -1,4 +1,4 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider, HashRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
 import UserContextProvider from "./context/UserContext";
@@ -16,7 +16,7 @@ import { route } from "./utils/routes";
 
 import "./App.scss";
 
-const router = createBrowserRouter([
+const router = HashRouter([
 	{
 		element: <Layout />,
 		children: [
